@@ -1,23 +1,26 @@
 function updateClock() {
-    const now = new Date();
-    const hours = now.getHours() % 12;
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
+  // 获取当前时间
+  const now = new Date();
+  const hours = now.getHours() % 12;
+  const minutes = now.getMinutes();
+  const seconds = parseFloat(now.getSeconds());
+  const milliseconds = parseFloat(now.getMilliseconds());
 
-    const hourHand = document.getElementById('hour-hand');
-    const minuteHand = document.getElementById('minute-hand');
-    const secondHand = document.getElementById('second-hand');
+  // 获取dom树节点
+  const hourHand = document.getElementById('hour-hand');
+  const minuteHand = document.getElementById('minute-hand');
+  const secondHand = document.getElementById('second-hand');
 
-    const hourDeg = (360 / 12) * hours + (360 / 12) * (minutes / 60);
-    const minuteDeg = (360 / 60) * minutes;
-    const secondDeg = (360 / 60) * seconds;
+  //获取时钟指针角度
+  const hourDeg = (360 / 12) * (hours + minutes / 60 + seconds/3600 + milliseconds / 3600000);
+  const minuteDeg = (360 / 60) * (minutes + seconds/60 + milliseconds/60000);
+  const secondDeg = (360 / 60) * (seconds + milliseconds/1000);
 
-    hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
-    minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
-    secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
+  //更新时针指针角度
+  hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
+  minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
+  secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
+}
 
-  
-  }
-
-  setInterval(updateClock, 1000); // 每秒更新一次时钟
-  updateClock(); // 初始加载时钟
+setInterval(updateClock, 10); // 每10毫秒更新一次时钟，因此时钟显示为100帧
+updateClock(); // 初始加载时钟
