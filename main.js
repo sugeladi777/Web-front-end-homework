@@ -12,9 +12,9 @@ function updateClock() {
   const secondHand = document.getElementById('second-hand');
 
   //获取时钟指针角度
-  const hourDeg = (360 / 12) * (hours + minutes / 60 + seconds/3600 + milliseconds / 3600000);
-  const minuteDeg = (360 / 60) * (minutes + seconds/60 + milliseconds/60000);
-  const secondDeg = (360 / 60) * (seconds + milliseconds/1000);
+  const hourDeg = (360 / 12) * (hours + minutes / 60 + seconds / 3600 + milliseconds / 3600000);
+  const minuteDeg = (360 / 60) * (minutes + seconds / 60 + milliseconds / 60000);
+  const secondDeg = (360 / 60) * (seconds + milliseconds / 1000);
 
   //更新时针指针角度
   hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
