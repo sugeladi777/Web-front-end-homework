@@ -28,7 +28,11 @@ function updateClock() {
   alarms = JSON.parse(localStorage.getItem("alarmClocks"));
   if (alarms) {
     alarms.forEach(function (alarm) {
-      if (alarm.hour == hours && alarm.minute == minutes && seconds < 0.1) {
+      if (
+        alarm.hour == now.getHours() &&
+        alarm.minute == minutes &&
+        seconds.toFixed(0) == 0
+      ) {
         alert("闹钟响了:" + alarm.name);
       }
     });
