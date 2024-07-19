@@ -1,71 +1,71 @@
 body {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  width: 100vw;
-  position: relative;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	width: 100vw;
+	position: relative;
 }
 
 input {
-  background-color: rgb(141, 138, 138);
-  width: 35px;
-  height: 30px;
-  margin-left: 10px;
-  margin-right: -5px;
-  border-radius: 5px;
+	background-color: rgb(141, 138, 138);
+	width: 35px;
+	height: 30px;
+	margin-left: 10px;
+	margin-right: -5px;
+	border-radius: 5px;
 }
 
 .alarm-item {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  width: 100vw;
-  margin-top: 20px;
-  background-color: rgb(17, 17, 17);
-  border-radius: 10px;
-  font-size: 60px;
-  color: white;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	justify-content: center;
+	align-items: center;
+	height: 200px;
+	width: 100vw;
+	margin-top: 20px;
+	background-color: rgb(17, 17, 17);
+	border-radius: 10px;
+	font-size: 60px;
+	color: white;
 }
 
 .alarm-name {
-  font-size: 20px;
-  color: rgb(160, 160, 160);
+	font-size: 20px;
+	color: rgb(160, 160, 160);
 }
 
 .delete-button {
-  width: 72px;
-  height: 45px;
-  margin-top: 15px;
-  background-color: rgb(241, 121, 121);
-  font-size: 20px;
-  color: white;
+	width: 72px;
+	height: 45px;
+	margin-top: 15px;
+	background-color: rgb(241, 121, 121);
+	font-size: 20px;
+	color: white;
 }
 
 #add-block {
-  display: flex;
-  background-color: rgb(117, 117, 117);
-  position: fixed;
-  align-items: center;
-  justify-content: center;
-  width: 530px;
-  height: 80px;
-  border-radius: 10px;
-  top: 570px;
-  left: 960px;
+	display: flex;
+	background-color: rgb(117, 117, 117);
+	position: fixed;
+	align-items: center;
+	justify-content: center;
+	width: 530px;
+	height: 80px;
+	border-radius: 10px;
+	top: 570px;
+	left: 960px;
 }
 
 #add-button {
-  width: 120px;
-  height: 45px;
-  background-color: rgb(105, 206, 104);
-  font-size: 20px;
-  color: white;
+	width: 120px;
+	height: 45px;
+	background-color: rgb(105, 206, 104);
+	font-size: 20px;
+	color: white;
 }
 
 #name {
-  width: 100px;
+	width: 100px;
 }
