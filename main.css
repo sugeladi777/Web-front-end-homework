@@ -1,21 +1,27 @@
 * {
-  margin: 0;
-  border: 0;
-  padding: 0;
+	margin: 0;
+	border: 0;
+	padding: 0;
 }
 body {
-  min-width: 500px;
-  background-color: black;
-  font-family: "Microsoft YaHei", "SimHei", "Apple LiGothic Medium";
+	min-width: 500px;
+	background-color: black;
+	font-family: 'Microsoft YaHei', 'SimHei', 'Apple LiGothic Medium';
 }
 #center {
-  position: relative;
-  top: 100px;
-  width: 500px;
-  height: 100%;
-  margin: auto;
+	position: relative;
+	top: 100px;
+	width: 500px;
+	height: 100%;
+	margin: auto;
 }
-.number{
-  font-size: 24px;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+.number {
+	font-size: 24px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+	pointer-events: none;
+}
+
+text {
+	user-select: none;
 }
