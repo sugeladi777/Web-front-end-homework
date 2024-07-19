@@ -18,4 +18,9 @@ body {
 .number {
 	font-size: 24px;
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	pointer-events: none;
+}
+
+.text {
+	user-select: none;
 }
