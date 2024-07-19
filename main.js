@@ -97,6 +97,16 @@ function updateClock() {
 		hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
 		minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
 		secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
+
+		//检查闹钟是否响起
+		alarms = JSON.parse(localStorage.getItem('alarmClocks'));
+		if (alarms) {
+			alarms.forEach(function (alarm) {
+				if (alarm.hour == now.getHours() && alarm.minute == minutes && seconds.toFixed(0) == 0) {
+					alert('闹钟响了:' + alarm.name);
+				}
+			});
+		}
 	}
 }
 
