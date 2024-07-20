@@ -1,3 +1,10 @@
+window.addEventListener('DOMContentLoaded', () => {
+	// 设置拖动效果
+	setDrag();
+	// 更新钟表
+	setInterval(updateClock, interval); // 每10毫秒更新一次时钟，因此时钟显示为100帧
+});
+
 // 表示是否是现实时间
 let realTime = true;
 
@@ -8,6 +15,9 @@ let dragHand = 0;
 let hourDeg = 0;
 let minuteDeg = 0;
 let secondDeg = 0;
+
+// 定义时钟刷新的频率
+const interval = 10;
 
 // 定义虚拟时间
 // 与Date()具有一些相同的接口
@@ -62,11 +72,9 @@ class vTime {
 	}
 }
 
-// 定义时钟刷新的频率
-const interval = 10;
-
 var vtime = new vTime(0, 0, 0, 0);
 
+// 更新时钟
 function updateClock() {
 	// 当没有拖动时执行
 	if (!dragHand) {
@@ -110,87 +118,91 @@ function updateClock() {
 	}
 }
 
-// 增加鼠标拖动功能
-const handContainer = document.getElementById('clock_hand');
-const clock = document.getElementById('clock');
+// 设置拖动效果
+function setDrag() {
+	// 增加鼠标拖动功能
+	const handContainer = document.getElementById('clock_hand');
+	const clock = document.getElementById('clock');
 
-handContainer.addEventListener('mousedown', (event) => {
-	const hand = event.target;
-	console.log('down');
+	handContainer.addEventListener('mousedown', (event) => {
+		const hand = event.target;
+		console.log('down');
 
-	switch (hand.id) {
-		case 'hour-hand-drag':
-			dragHand = 1;
-			break;
-		case 'minute-hand-drag':
-			dragHand = 2;
-			break;
-		case 'second-hand-drag':
-			dragHand = 3;
-			break;
-		default:
+		switch (hand.id) {
+			case 'hour-hand-drag':
+				dragHand = 1;
+				break;
+			case 'minute-hand-drag':
+				dragHand = 2;
+				break;
+			case 'second-hand-drag':
+				dragHand = 3;
+				break;
+			default:
+				dragHand = 0;
+				break;
+		}
+	});
+
+	clock.addEventListener('mousemove', (event) => {
+		if (dragHand) {
+			const hand = event.target;
+
+			console.log('move');
+
+			// 判断是否点击到了旋炳
+			if (
+				(dragHand == 1 && hand.id != 'hour-hand-drag') ||
+				(dragHand == 2 && hand.id != 'minute-hand-drag') ||
+				(dragHand == 3 && hand.id != 'second-hand-drag')
+			) {
+				return;
+			}
+
+			let dx = event.clientX - (clock.getBoundingClientRect().left + 250);
+			let dy = event.clientY - (clock.getBoundingClientRect().top + 250);
+			let deg = slopeToDeg(dx, dy);
+			console.log(dx, dy, deg);
+
+			// 改变当前角度
+			switch (dragHand) {
+				case 1:
+					hourDeg = deg;
+					break;
+				case 2:
+					minuteDeg = deg;
+					break;
+				case 3:
+					secondDeg = deg;
+					break;
+				default:
+					break;
+			}
+
+			hand.parentElement.setAttribute('transform', `rotate(${deg}, 250, 250)`);
+			updateVtime();
+			console.log(vtime.getSeconds());
+		}
+	});
+
+	handContainer.addEventListener('mouseup', () => {
+		console.log('up');
+		if (dragHand) {
 			dragHand = 0;
-			break;
-	}
-});
+			realTime = false;
 
+			// 更新虚拟时间
+			updateVtime();
+		}
+	});
+}
+
+// 计算偏转角度
 function slopeToDeg(dx, dy) {
 	let slope = Math.atan(dy / dx);
 	let deg = (slope * 180) / Math.PI + 90;
 	return dx < 0 ? deg + 180 : deg;
 }
-
-clock.addEventListener('mousemove', (event) => {
-	if (dragHand) {
-		const hand = event.target;
-
-		console.log('move');
-
-		// 判断是否点击到了旋炳
-		if (
-			(dragHand == 1 && hand.id != 'hour-hand-drag') ||
-			(dragHand == 2 && hand.id != 'minute-hand-drag') ||
-			(dragHand == 3 && hand.id != 'second-hand-drag')
-		) {
-			return;
-		}
-
-		let dx = event.clientX - (clock.getBoundingClientRect().left + 250);
-		let dy = event.clientY - (clock.getBoundingClientRect().top + 250);
-		let deg = slopeToDeg(dx, dy);
-		console.log(dx, dy, deg);
-
-		// 改变当前角度
-		switch (dragHand) {
-			case 1:
-				hourDeg = deg;
-				break;
-			case 2:
-				minuteDeg = deg;
-				break;
-			case 3:
-				secondDeg = deg;
-				break;
-			default:
-				break;
-		}
-
-		hand.parentElement.setAttribute('transform', `rotate(${deg}, 250, 250)`);
-		updateVtime();
-		console.log(vtime.getSeconds());
-	}
-});
-
-handContainer.addEventListener('mouseup', () => {
-	console.log('up');
-	if (dragHand) {
-		dragHand = 0;
-		realTime = false;
-
-		// 更新虚拟时间
-		updateVtime();
-	}
-});
 
 // 根据钟表指针更新虚拟时间
 function updateVtime() {
@@ -201,6 +213,3 @@ function updateVtime() {
 
 	vtime = new vTime(hours, minute, second, milliseconds);
 }
-
-setInterval(updateClock, interval); // 每10毫秒更新一次时钟，因此时钟显示为100帧
-updateClock(); // 初始加载时钟 ？这一行貌似可以删去？
