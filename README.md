@@ -1,4 +1,5 @@
 # Web-front-end-homework
+
 This is a front-end group homework for the School of Software, Tsinghua University
 
 队长:
@@ -11,17 +12,17 @@ This is a front-end group homework for the School of Software, Tsinghua Universi
 
 风格：
 
-使用prettier插件来统一
+使用 prettier 插件来统一
 
 命名：
 
-1、id唯一
+1、id 唯一
 
-2、id和类名单词间用-隔开
+2、id 和类名单词间用-隔开
 
-3、js函数名用驼峰法
+3、js 函数名用驼峰法
 
-4、css选择时从大到小多级选择
+4、css 选择时从大到小多级选择
 
 其他：
 
