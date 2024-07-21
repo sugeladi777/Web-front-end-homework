@@ -92,15 +92,16 @@ function updateClock() {
 		const minutes = now.getMinutes();
 		const seconds = parseFloat(now.getSeconds());
 		const milliseconds = parseFloat(now.getMilliseconds());
-		const hoursDisplay = now.getHours()% 24;
-		if(hoursDisplay<0){
-			hoursDisplay=0;
+		const hoursDisplay = now.getHours() % 24;
+		if (hoursDisplay < 0) {
+			hoursDisplay = 0;
 		}
 
 		//更新数字时间显示
-		const timeString=`${String(hoursDisplay.toFixed(0)).padStart(2,'0')} : ${String(minutes.toFixed(0)).padStart(2,'0')} : ${String(seconds.toFixed(0)).padStart(2,'0')}`;
-		document.getElementById('time-display').textContent=timeString;
-
+		const timeString = `${String(hoursDisplay.toFixed(0)).padStart(2, '0')} : ${String(minutes.toFixed(0)).padStart(2, '0')} : ${String(
+			seconds.toFixed(0)
+		).padStart(2, '0')}`;
+		document.getElementById('time-display').textContent = timeString;
 
 		// 获取dom树节点
 		const hourHand = document.getElementById('hour-hand');
@@ -256,67 +257,65 @@ function updateVtime() {
 }
 
 //根据选择启用不同功能
-window.onload=function(){
-	var clockFunction = document.getElementById('clock-functions'); 
-	if(clockFunction){
-		clockFunction.addEventListener('change', (event) => { 
-			const selectedFunction = event.target.value;  
-			const timeInputHour = document.getElementById('time-input-hour');  
-			const timeInputMinute = document.getElementById('time-input-minute');  
-			const timeInputSecond = document.getElementById('time-input-second');  
-			const timeInputButton = document.getElementById('time-input-button');  
-	
-			if (selectedFunction === 'setTime') {  
-				timeInputHour.disabled = false; 
-				timeInputMinute.disabled = false;  
-				timeInputSecond.disabled = false;  
-				timeInputHour.style.display = 'block'; 
-				timeInputMinute.style.display = 'block'; 
-				timeInputSecond.style.display = 'block'; 
-				timeInputButton.style.display = 'block'; 
-			} else {  
-				timeInputHour.disabled = true; 
-				timeInputMinute.disabled = true;  
-				timeInputSecond.disabled = true; 
-				timeInputHour.style.display = 'none'; 
-				timeInputMinute.style.display = 'none'; 
-				timeInputSecond.style.display = 'none'; 
-				timeInputButton.style.display = 'none'; 
-			} 
-		})
-			// const selectedFunction = event.target.value;  
-			const timeInputHour = document.getElementById('time-input-hour');  
-			const timeInputMinute = document.getElementById('time-input-minute');  
-			const timeInputSecond = document.getElementById('time-input-second');  
-			// const timeInputButton = document.getElementById('time-input-button');  
+window.onload = function () {
+	var clockFunction = document.getElementById('clock-functions');
+	if (clockFunction) {
+		clockFunction.addEventListener('change', (event) => {
+			const selectedFunction = event.target.value;
+			const timeInputHour = document.getElementById('time-input-hour');
+			const timeInputMinute = document.getElementById('time-input-minute');
+			const timeInputSecond = document.getElementById('time-input-second');
+			const timeInputButton = document.getElementById('time-input-button');
 
-		timeInputHour.addEventListener("input", function (e) {
-			console.log("inputhour");
-			if (e.target.value < 0) {
-			  e.target.value = 0;
-			} else if (e.target.value > 23) {
-			  e.target.value = 23;
+			if (selectedFunction === 'setTime') {
+				timeInputHour.disabled = false;
+				timeInputMinute.disabled = false;
+				timeInputSecond.disabled = false;
+				timeInputHour.style.display = 'block';
+				timeInputMinute.style.display = 'block';
+				timeInputSecond.style.display = 'block';
+				timeInputButton.style.display = 'block';
+			} else {
+				timeInputHour.disabled = true;
+				timeInputMinute.disabled = true;
+				timeInputSecond.disabled = true;
+				timeInputHour.style.display = 'none';
+				timeInputMinute.style.display = 'none';
+				timeInputSecond.style.display = 'none';
+				timeInputButton.style.display = 'none';
 			}
-		  });
-	
-		  timeInputMinute.addEventListener("input", function (e) {
+		});
+		// const selectedFunction = event.target.value;
+		const timeInputHour = document.getElementById('time-input-hour');
+		const timeInputMinute = document.getElementById('time-input-minute');
+		const timeInputSecond = document.getElementById('time-input-second');
+		// const timeInputButton = document.getElementById('time-input-button');
+
+		timeInputHour.addEventListener('input', function (e) {
+			console.log('inputhour');
 			if (e.target.value < 0) {
-			  e.target.value = 0;
+				e.target.value = 0;
 			} else if (e.target.value > 23) {
-			  e.target.value = 23;
+				e.target.value = 23;
 			}
-		  });
-	
-		  timeInputSecond.addEventListener("input", function (e) {
+		});
+
+		timeInputMinute.addEventListener('input', function (e) {
 			if (e.target.value < 0) {
-			  e.target.value = 0;
+				e.target.value = 0;
 			} else if (e.target.value > 23) {
-			  e.target.value = 23;
+				e.target.value = 23;
 			}
-		  });
+		});
+
+		timeInputSecond.addEventListener('input', function (e) {
+			if (e.target.value < 0) {
+				e.target.value = 0;
+			} else if (e.target.value > 23) {
+				e.target.value = 23;
+			}
+		});
 	}
-
-	
 
 	//通过时间输入框实现时分秒设置
 	function setTimeFromInput() {
@@ -329,23 +328,25 @@ window.onload=function(){
 	}
 	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
 };
-	function setTimeFromInput() {  
-		const hours = parseInt(document.getElementById('time-input-hour').value, 10); 
-		const minutes = parseInt(document.getElementById('time-input-minute').value, 10);  
-		const seconds = parseInt(document.getElementById('time-input-second').value, 10);  
-		if (!isNaN(hours) && hours >= 0 && hours <= 23 &&  
-        !isNaN(minutes) && minutes >= 0 && minutes <= 59 &&  
-        !isNaN(seconds) && seconds >= 0 && seconds <= 59){
-			realTime=false;
-			vtime = new vTime(hours, minutes, seconds, 0);
-		}else{
-			alert("时间格式有误");
-		}
-
-		
-	}  
-	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);  
+function setTimeFromInput() {
+	const hours = parseInt(document.getElementById('time-input-hour').value, 10);
+	const minutes = parseInt(document.getElementById('time-input-minute').value, 10);
+	const seconds = parseInt(document.getElementById('time-input-second').value, 10);
+	if (
+		!isNaN(hours) &&
+		hours >= 0 &&
+		hours <= 23 &&
+		!isNaN(minutes) &&
+		minutes >= 0 &&
+		minutes <= 59 &&
+		!isNaN(seconds) &&
+		seconds >= 0 &&
+		seconds <= 59
+	) {
+		realTime = false;
+		vtime = new vTime(hours, minutes, seconds, 0);
+	} else {
+		alert('时间格式有误');
+	}
 }
-
-
-
+document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
