@@ -24,3 +24,88 @@ body {
 .text {
 	user-select: none;
 }
+
+#background-hour{
+	position: absolute;
+	left:148px;
+	top:548px;
+	width:50px;
+	height:50px;
+	background-color:white;
+	border-radius: 10px;
+}
+
+#background-minute{
+	position: absolute;
+	left:224px;
+	top:548px;
+	width:50px;
+	height:50px;
+	background-color:white;
+	border-radius: 10px;
+}
+
+#background-second{
+	position: absolute;
+	left:302px;
+	top:548px;
+	width:50px;
+	height:50px;
+	background-color:white;
+	border-radius: 10px;
+}
+
+#time-display{
+	position: absolute;
+	left:150px;
+	top:550px;
+	font-size: 40px;  
+	font-family: Arial, sans-serif;  
+	color: black;
+	text-anchor: middle; 
+}
+
+#clock-functions{
+	position: absolute;
+	left:175px;
+	top:650px;
+	width:150px;
+	height:50px;
+	font-size: 20px;
+}
+
+#time-input-hour{
+	position: absolute;
+	left:55px;
+	top:750px;
+	width:100px;
+	height:50px;
+	font-size: 30px;
+}
+
+#time-input-minute{
+	position: absolute;
+	left:165px;
+	top:750px;
+	width:100px;
+	height:50px;
+	font-size: 30px;
+}
+
+#time-input-second{
+	position: absolute;
+	left:275px;
+	top:750px;
+	width:100px;
+	height:50px;
+	font-size: 30px;
+}
+
+#time-input-button{
+	position: absolute;
+	left:385px;
+	top:750px;
+	width:100px;
+	height:50px;
+	font-size: 30px;
+}
