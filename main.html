@@ -100,6 +100,26 @@
 					</g>
 				</g>
 			</svg>
+			<!-- 数字显示 -->
+			<div>
+				<div id="background-hour"></div>
+				<div id="background-minute"></div>
+				<div id="background-second"></div>
+				<text id="time-display" >00 : 00 : 00</text>
+			</div>
+			<!-- 功能选择 -->
+			<select id="clock-functions">
+				<option value="" disabled selected>选择功能</option>
+				<option value="setTime">设置时间</option>
+				<option value="stopwatch">秒表</option>
+				<option value="alarm">闹钟</option>
+				<option value="timer">计时</option>
+			</select>
+			<!-- 时间设置 -->
+			<input type="number" id="time-input-hour" min="0" max="23" disabled style="display: none;">
+			<input type="number" id="time-input-minute" min="0" max="59" disabled style="display: none;">
+			<input type="number" id="time-input-second" min="0" max="59" disabled style="display: none;">
+			<button id="time-input-button" style="display: none;">确认</button>
 		</div>
 	</body>
 </html>
