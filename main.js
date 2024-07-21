@@ -246,6 +246,8 @@ window.onload = function () {
 				location.href = 'alarm.html';
 			} else if (selectedFunction === 'stopwatch') {
 				location.href = 'stopwatch.html';
+			} else if (selectedFunction === 'timer') {
+				location.href = 'timer.html';
 			} else {
 				timeInputHour.disabled = true;
 				timeInputMinute.disabled = true;

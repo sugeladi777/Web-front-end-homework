@@ -6,7 +6,8 @@
 		<title>Document</title>
 		<link rel="stylesheet" href="./main.css" />
 		<link rel="stylesheet" href="./stopwatch.css" />
-		<script src="./stopwatch.js"></script>
+		<link rel="stylesheet" href="./timer.css" />
+		<script src="./timer.js"></script>
 	</head>
 
 	<body>
@@ -101,8 +102,12 @@
 					</g>
 				</g>
 			</svg>
-			<div id="time">00:00.00</div>
-			<button id="start-button">开始</button>
+
+			<div id="add-block">
+				<input type="number" id="hour" value="0" />时<input type="number" id="minute" value="0" />分<input type="number" id="second" value="0" />秒
+			</div>
+
+			<button id="start-button">开始计时</button>
 			<button id="reset-button">归零</button>
 		</div>
 	</body>
