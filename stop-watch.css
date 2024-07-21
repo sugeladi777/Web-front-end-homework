@@ -1,0 +1,30 @@
+#center {
+	text-align: center;
+	top: -10px;
+}
+
+#time {
+	font-size: 60px;
+	color: white;
+}
+
+#start-button {
+	width: 120px;
+	height: 45px;
+	background-color: rgb(105, 206, 104);
+	font-size: 20px;
+	color: white;
+}
+
+#reset-button {
+	width: 120px;
+	height: 45px;
+	background-color: rgb(241, 121, 121);
+	font-size: 20px;
+	color: white;
+	margin-left: 10px;
+}
+
+#clock {
+	scale: 80%;
+}
