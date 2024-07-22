@@ -1,0 +1,19 @@
+#add-block {
+	align-content: center;
+	align-self: center;
+	font-size: 17px;
+	margin-bottom: 20px;
+	scale: 200%;
+	color: white;
+}
+input {
+	width: 40px;
+	height: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	background-color: rgb(59, 57, 57);
+	border-radius: 5px;
+	color: white;
+	text-align: center;
+}
