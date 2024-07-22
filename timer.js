@@ -72,6 +72,8 @@ window.addEventListener('DOMContentLoaded', () => {
 			document.getElementById('hour').value = pauseTime.getHours();
 			document.getElementById('minute').value = pauseTime.getMinutes();
 			document.getElementById('second').value = pauseTime.getSeconds();
+			pauseTime.addMilliseconds(10);
+			updateClock(pauseTime);
 		}
 		const start = document.getElementById('start-button');
 		start.addEventListener('click', handleStart);

@@ -254,16 +254,16 @@ window.onload = function () {
 		timeInputMinute.addEventListener('input', function (e) {
 			if (e.target.value < 0) {
 				e.target.value = 0;
-			} else if (e.target.value > 23) {
-				e.target.value = 23;
+			} else if (e.target.value > 59) {
+				e.target.value = 59;
 			}
 		});
 
 		timeInputSecond.addEventListener('input', function (e) {
 			if (e.target.value < 0) {
 				e.target.value = 0;
-			} else if (e.target.value > 23) {
-				e.target.value = 23;
+			} else if (e.target.value > 59) {
+				e.target.value = 59;
 			}
 		});
 	}
