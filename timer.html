@@ -5,11 +5,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 		<link rel="stylesheet" href="./main.css" />
+		<link rel="stylesheet" href="./stopwatch.css" />
+		<link rel="stylesheet" href="./timer.css" />
 		<script src="./timeManager.js"></script>
-		<script src="./main.js"></script>
+		<script src="./timer.js"></script>
 	</head>
 
 	<body>
+		<button id="back">返回</button>
 		<div id="center">
 			<!-- 时钟模型 -->
 			<svg id="clock" width="500" height="500">
@@ -101,30 +104,13 @@
 					</g>
 				</g>
 			</svg>
-			<!-- 数字显示 -->
-			<div>
-				<svg width="400" height="400" x="300" y="300">
-					<rect x="303" y="43" width="50" height="50" fill="white" rx="15" ry="15" /> 
-					<rect x="225" y="43" width="50" height="50" fill="white" rx="15" ry="15" /> 
-					<rect x="148" y="43" width="50" height="50" fill="white" rx="15" ry="15" /> 
-				</svg>
-				<text id="time-display" >00 </text>
-				<text id="time-display1" >:</text>
-				<text id="time-display2" >:</text>
+
+			<div id="add-block">
+				<input type="number" id="hour" value="0" />时<input type="number" id="minute" value="0" />分<input type="number" id="second" value="0" />秒
 			</div>
-			<!-- 功能选择 -->
-			<select id="clock-functions">
-				<option value="" disabled selected>选择功能</option>
-				<option value="setTime">设置时间</option>
-				<option value="stopwatch">秒表</option>
-				<option value="alarm">闹钟</option>
-				<option value="timer">计时</option>
-			</select>
-			<!-- 时间设置 -->
-			<input type="number" id="time-input-hour" min="0" max="23" disabled style="display: none" />
-			<input type="number" id="time-input-minute" min="0" max="59" disabled style="display: none" />
-			<input type="number" id="time-input-second" min="0" max="59" disabled style="display: none" />
-			<button id="time-input-button" style="display: none">确认</button>
+
+			<button id="start-button">开始计时</button>
+			<button id="reset-button">归零</button>
 		</div>
 	</body>
 </html>
