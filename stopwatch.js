@@ -1,57 +1,5 @@
 // 定义虚拟时间
 // 与Date()具有一些相同的接口
-
-class vTime {
-	constructor(hours, minutes, seconds, milliseconds) {
-		this.hours = hours;
-		this.minutes = minutes;
-		this.seconds = seconds;
-		this.milliseconds = milliseconds;
-	}
-
-	addMilliseconds(dms) {
-		this.milliseconds += dms;
-		if (this.milliseconds >= 1000) {
-			this.seconds++;
-			this.milliseconds -= 1000;
-		}
-		if (this.seconds >= 60) {
-			this.minutes++;
-			this.seconds -= 60;
-		}
-		if (this.minutes >= 60) {
-			this.hours++;
-			this.minutes -= 60;
-		}
-		if (this.hours >= 24) {
-			this.hours -= 24;
-		}
-	}
-
-	getHours() {
-		return this.hours;
-	}
-
-	getMinutes() {
-		return this.minutes;
-	}
-
-	getSeconds() {
-		return this.seconds;
-	}
-
-	getMilliseconds() {
-		return this.milliseconds;
-	}
-
-	copyFrom(time) {
-		this.hours = time.getHours();
-		this.minutes = time.getMinutes();
-		this.seconds = time.getSeconds();
-		this.milliseconds = time.getMilliseconds();
-	}
-}
-
 window.addEventListener('DOMContentLoaded', () => {
 	// 获取本地时间
 	const curTime = localStorage.getItem('now');
@@ -130,25 +78,4 @@ function updateClock(time) {
 	hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
 	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
 	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
-
-	//检查闹钟是否响起
-	alarms = JSON.parse(localStorage.getItem('alarmClocks'));
-	if (alarms) {
-		alarms.forEach(function (alarm) {
-			if (alarm.hour == now.getHours() && alarm.minute == minutes && seconds.toFixed(0) == 0) {
-				alert('闹钟响了:' + alarm.name);
-			}
-		});
-	}
-}
-
-function checkAlarm(now) {
-	alarms = JSON.parse(localStorage.getItem('alarmClocks'));
-	if (alarms) {
-		alarms.forEach(function (alarm) {
-			if (alarm.hour == now.getHours() && alarm.minute == minutes && seconds.toFixed(0) == 0) {
-				alert('闹钟响了:' + alarm.name);
-			}
-		});
-	}
 }

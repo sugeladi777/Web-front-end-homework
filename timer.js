@@ -1,106 +1,154 @@
-// 定义虚拟时间
-// 与Date()具有一些相同的接口
-
-class vTime {
-	constructor(hours, minutes, seconds, milliseconds) {
-		this.hours = hours;
-		this.minutes = minutes;
-		this.seconds = seconds;
-		this.milliseconds = milliseconds;
+function handleStart() {
+	const hour = parseInt(document.getElementById('hour').value);
+	const minute = parseInt(document.getElementById('minute').value);
+	const second = parseInt(document.getElementById('second').value);
+	let millisecond = 0;
+	if (pauseTime) {
+		millisecond = pauseTime.getMilliseconds();
 	}
-
-	decreaseMilliseconds(dms) {
-		this.milliseconds -= dms;
-		if (this.milliseconds < 0 && this.seconds > 0) {
-			this.seconds--;
-			this.milliseconds += 1000;
-		}
-		if (this.seconds < 0 && this.minutes > 0) {
-			this.minutes--;
-			this.seconds += 60;
-		}
-		if (this.minutes < 0 && this.hours > 0) {
-			this.hours--;
-			this.minutes += 60;
-		}
-		if (this.hours < 0) {
-			this.hours = 0;
-		}
+	if (hour <= 0 && minute <= 0 && second <= 0) {
+		alert('请输入大于零的正确时间');
+		return;
 	}
-
-	addMilliseconds(dms) {
-		this.milliseconds += dms;
-		if (this.milliseconds >= 1000) {
-			this.seconds++;
-			this.milliseconds -= 1000;
-		}
-		if (this.seconds >= 60) {
-			this.minutes++;
-			this.seconds -= 60;
-		}
-		if (this.minutes >= 60) {
-			this.hours++;
-			this.minutes -= 60;
-		}
-		if (this.hours >= 24) {
-			this.hours -= 24;
-		}
+	var timerTime = new vTime(hour, minute, second, millisecond);
+	localStorage.setItem('timerTime', JSON.stringify([hour, minute, second, millisecond]));
+	localStorage.removeItem('pauseTime');
+	// 获取输入的时间,并将其存储到本地
+	if (!timerTime || (hour == 0 && minute == 0 && second == 0)) {
 	}
-
-	getHours() {
-		return this.hours;
-	}
-
-	getMinutes() {
-		return this.minutes;
-	}
-
-	getSeconds() {
-		return this.seconds;
-	}
-
-	getMilliseconds() {
-		return this.milliseconds;
-	}
-
-	copyFrom(time) {
-		this.hours = time.getHours();
-		this.minutes = time.getMinutes();
-		this.seconds = time.getSeconds();
-		this.milliseconds = time.getMilliseconds();
-	}
+	var update = setInterval(updateClock, interval, timerTime);
+	// 改变按钮文字，移除事件监听器
+	start.textContent = '暂停';
+	start.removeEventListener('click', handleStart);
+	start.addEventListener('click', handlePause);
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-	// 获取本地时间
-	const curTime = localStorage.getItem('now');
-	var now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
-	// TODO：更新虚拟时钟
+function handlePause() {
+	start.textContent = '开始计时';
+	localStorage.removeItem('timerTime');
+	localStorage.setItem(
+		'pauseTime',
+		JSON.stringify([timerTime.getHours(), timerTime.getMinutes(), timerTime.getSeconds(), timerTime.getMilliseconds()])
+	);
+	clearInterval(update);
+	start.removeEventListener('click', handlePause); // 移除事件监听器
+	start.addEventListener('click', handleStart); // 添加事件监听器
+}
 
-	// 点击开始按钮更新钟表
-	const start = document.getElementById('start-button');
-	start.addEventListener('click', function handleStart() {
-		const hour = parseInt(document.getElementById('hour').value);
-		const minute = parseInt(document.getElementById('minute').value);
-		const second = parseInt(document.getElementById('second').value);
-		var timerTime = new vTime(hour, minute, second, 0);
+// 定义虚拟时间
+// 与Date()具有一些相同的接口
+window.addEventListener('DOMContentLoaded', () => {
+	// 初始化定时器
+	var timerTime = JSON.parse(localStorage.getItem('timerTime'));
+	if (timerTime) timerTime = new vTime(timerTime[0], timerTime[1], timerTime[2], timerTime[3]);
+	var pauseTime = JSON.parse(localStorage.getItem('pauseTime'));
+	if (pauseTime) timerTime = new vTime(pauseTime[0], pauseTime[1], pauseTime[2], pauseTime[3]);
+
+	if (
+		pauseTime ||
+		!timerTime ||
+		(timerTime.getHours() == 0 && timerTime.getMinutes() == 0 && timerTime.getSeconds() == 0 && timerTime.getMilliseconds() == 0)
+	) {
+		const start = document.getElementById('start-button');
+		var pauseTime = JSON.parse(localStorage.getItem('pauseTime'));
+		if (pauseTime) {
+			pauseTime = new vTime(pauseTime[0], pauseTime[1], pauseTime[2], pauseTime[3]);
+			document.getElementById('hour').value = pauseTime.getHours();
+			document.getElementById('minute').value = pauseTime.getMinutes();
+			document.getElementById('second').value = pauseTime.getSeconds();
+		}
+
+		start.addEventListener('click', function handleStart() {
+			const hour = parseInt(document.getElementById('hour').value);
+			const minute = parseInt(document.getElementById('minute').value);
+			const second = parseInt(document.getElementById('second').value);
+			let millisecond = 0;
+			if (pauseTime) {
+				millisecond = pauseTime.getMilliseconds();
+			}
+			if (hour <= 0 && minute <= 0 && second <= 0) {
+				alert('请输入大于零的正确时间');
+				return;
+			}
+			var timerTime = new vTime(hour, minute, second, millisecond);
+			localStorage.setItem('timerTime', JSON.stringify([hour, minute, second, millisecond]));
+			localStorage.removeItem('pauseTime');
+			// 获取输入的时间,并将其存储到本地
+			if (!timerTime || (hour == 0 && minute == 0 && second == 0)) {
+			}
+			var update = setInterval(updateClock, interval, timerTime);
+			// 改变按钮文字，移除事件监听器
+			start.textContent = '暂停';
+			start.removeEventListener('click', handleStart);
+			start.addEventListener('click', function handlePause() {
+				start.textContent = '开始计时';
+				localStorage.removeItem('timerTime');
+				localStorage.setItem(
+					'pauseTime',
+					JSON.stringify([timerTime.getHours(), timerTime.getMinutes(), timerTime.getSeconds(), timerTime.getMilliseconds()])
+				);
+				clearInterval(update);
+				start.removeEventListener('click', handlePause); // 移除事件监听器
+				start.addEventListener('click', handleStart); // 添加事件监听器
+			});
+		});
+	} else {
+		const pause = document.getElementById('start-button');
+		pause.textContent = '暂停';
+
+		document.getElementById('hour').value = timerTime.getHours();
+		document.getElementById('minute').value = timerTime.getMinutes();
+		document.getElementById('second').value = timerTime.getSeconds();
 		var update = setInterval(updateClock, interval, timerTime);
 
-		start.textContent = '暂停';
-		start.removeEventListener('click', handleStart); // 移除事件监听器
-		start.addEventListener('click', function handlePause() {
-			start.textContent = '开始计时';
-			clearInterval(update);
-			start.removeEventListener('click', handlePause); // 移除事件监听器
-			start.addEventListener('click', handleStart); // 添加事件监听器
+		pause.addEventListener('click', function handlePause() {
+			// 改变按钮文字，移除事件监听器
+			pause.textContent = '开始计时';
+			pause.removeEventListener('click', handlePause);
+			localStorage.setItem(
+				'pauseTime',
+				JSON.stringify([timerTime.getHours(), timerTime.getMinutes(), timerTime.getSeconds(), timerTime.getMilliseconds()])
+			);
+			pause.addEventListener('click', function handleStart() {
+				pause.textContent = '暂停';
+				// localStorage.removeItem('timerTime');
+				localStorage.removeItem('pauseTime');
+				setInterval(update);
+				pause.removeEventListener('click', handleStart); // 移除事件监听器
+				pause.addEventListener('click', handlePause); // 添加事件监听器
+			});
 		});
-	});
+	}
 	// 点击重置按钮重置钟表
 	const reset = document.getElementById('reset-button');
 	reset.addEventListener('click', function handleReset() {
 		location.reload();
 	});
-	// TODO: 点击跳转网页
+	// 为输入框添加输入事件
+	const inputHour = document.getElementById('hour');
+	const inputMinute = document.getElementById('minute');
+	const inputSecond = document.getElementById('second');
+	inputHour.addEventListener('input', function (e) {
+		if (e.target.value < 0) {
+			e.target.value = 0;
+		} else if (e.target.value > 99) {
+			e.target.value = 99;
+		}
+	});
+	inputMinute.addEventListener('input', function (e) {
+		if (e.target.value < 0) {
+			e.target.value = 0;
+		} else if (e.target.value > 59) {
+			e.target.value = 59;
+		}
+	});
+	inputSecond.addEventListener('input', function (e) {
+		if (e.target.value < 0) {
+			e.target.value = 0;
+		}
+
+		// TODO: 点击跳转网页
+	});
 });
 
 // 表示是否是现实时间
@@ -127,6 +175,7 @@ function updateClock(time) {
 	// 更新虚拟时间
 
 	time.decreaseMilliseconds(interval);
+	localStorage.setItem('timerTime', JSON.stringify([time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds()]));
 
 	// 获取当前时间
 	const now = time;
@@ -154,25 +203,4 @@ function updateClock(time) {
 	hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
 	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
 	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
-
-	//检查闹钟是否响起
-	alarms = JSON.parse(localStorage.getItem('alarmClocks'));
-	if (alarms) {
-		alarms.forEach(function (alarm) {
-			if (alarm.hour == now.getHours() && alarm.minute == minutes && seconds.toFixed(0) == 0) {
-				alert('闹钟响了:' + alarm.name);
-			}
-		});
-	}
-}
-
-function checkAlarm(now) {
-	alarms = JSON.parse(localStorage.getItem('alarmClocks'));
-	if (alarms) {
-		alarms.forEach(function (alarm) {
-			if (alarm.hour == now.getHours() && alarm.minute == minutes && seconds.toFixed(0) == 0) {
-				alert('闹钟响了:' + alarm.name);
-			}
-		});
-	}
 }

@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
 		<link rel="stylesheet" href="./main.css" />
+		<script src="./timeManager.js"></script>
 		<script src="./main.js"></script>
 	</head>
 
@@ -105,7 +106,7 @@
 				<div id="background-hour"></div>
 				<div id="background-minute"></div>
 				<div id="background-second"></div>
-				<text id="time-display" >00 : 00 : 00</text>
+				<text id="time-display">00 : 00 : 00</text>
 			</div>
 			<!-- 功能选择 -->
 			<select id="clock-functions">
@@ -116,10 +117,10 @@
 				<option value="timer">计时</option>
 			</select>
 			<!-- 时间设置 -->
-			<input type="number" id="time-input-hour" min="0" max="23" disabled style="display: none;">
-			<input type="number" id="time-input-minute" min="0" max="59" disabled style="display: none;">
-			<input type="number" id="time-input-second" min="0" max="59" disabled style="display: none;">
-			<button id="time-input-button" style="display: none;">确认</button>
+			<input type="number" id="time-input-hour" min="0" max="23" disabled style="display: none" />
+			<input type="number" id="time-input-minute" min="0" max="59" disabled style="display: none" />
+			<input type="number" id="time-input-second" min="0" max="59" disabled style="display: none" />
+			<button id="time-input-button" style="display: none">确认</button>
 		</div>
 	</body>
 </html>
