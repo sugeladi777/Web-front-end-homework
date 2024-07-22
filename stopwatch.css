@@ -1,3 +1,11 @@
+button {
+	width: 120px;
+	height: 45px;
+	background-color: rgb(105, 206, 104);
+	font-size: 20px;
+	color: white;
+}
+
 #center {
 	text-align: center;
 	top: -10px;
@@ -6,6 +14,13 @@
 #time {
 	font-size: 60px;
 	color: white;
+}
+
+#back {
+	width: 100px;
+	position: absolute;
+	left: 60px;
+	top: 30px;
 }
 
 #start-button {

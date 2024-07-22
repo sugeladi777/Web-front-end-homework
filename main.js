@@ -300,4 +300,6 @@ function setTimeFromInput() {
 		alert('时间格式有误');
 	}
 }
-document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
+if (document.getElementById('time-input-button')) {
+	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
+}

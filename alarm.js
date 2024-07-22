@@ -91,6 +91,10 @@ window.onload = function () {
 	});
 	// 初始化闹钟界面
 	displayAlarms();
+	// 为返回按钮添加点击事件
+	document.getElementById('back').addEventListener('click', function () {
+		window.location.href = './main.html';
+	});
 	// 为输入框添加输入事件
 	const inputHour = document.getElementById('hour');
 	const inputMinute = document.getElementById('minute');
