@@ -78,16 +78,6 @@ var vtime = new vTime(0, 0, 0, 0);
 
 // 更新时钟
 function updateClock() {
-	// // 获取当前时间
-	// if (realTime) {
-	// 	vtime.copyFrom(new Date());
-	// }
-	// const now = vtime;
-	// const hours = now.getHours() % 12;
-	// const minutes = now.getMinutes();
-	// const seconds = parseFloat(now.getSeconds());
-	// const milliseconds = parseFloat(now.getMilliseconds());
-
 	// 当没有拖动时执行
 	if (!dragHand) {
 		// 更新虚拟时间
@@ -136,23 +126,6 @@ function updateClock() {
 			});
 		}
 	}
-
-	// //更新数字时间显示
-	// // const hoursNum=hours.
-	// const timeString = `${String(hours.toFixed(0)).padStart(2, '0')} : ${String(minutes.toFixed(0)).padStart(2, '0')} : ${String(
-	// 	seconds.toFixed(0)
-	// ).padStart(2, '0')}`;
-	// document.getElementById('time-display').textContent = timeString;
-
-	// //检查闹钟是否响起
-	// alarms = JSON.parse(localStorage.getItem('alarmClocks'));
-	// if (alarms) {
-	// 	alarms.forEach(function (alarm) {
-	// 		if (alarm.hour == now.getHours() && alarm.minute == minutes && seconds.toFixed(0) == 0) {
-	// 			alert('闹钟响了:' + alarm.name);
-	// 		}
-	// 	});
-	// }
 }
 
 // 设置拖动效果
