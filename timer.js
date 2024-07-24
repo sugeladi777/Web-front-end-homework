@@ -1,6 +1,11 @@
 let update;
 
 function handleStart() {
+	//禁止输入
+	document.getElementById('hour').disabled = true;
+	document.getElementById('minute').disabled = true;
+	document.getElementById('second').disabled = true;
+
 	const start = document.getElementById('start-button');
 
 	var timerTime = JSON.parse(localStorage.getItem('timerTime'));
@@ -39,11 +44,13 @@ function handlePause() {
 	const start = document.getElementById('start-button');
 
 	var timerTime = JSON.parse(localStorage.getItem('timerTime'));
-	if (timerTime) timerTime = new vTime(timerTime[0], timerTime[1], timerTime[2], timerTime[3]);
-	localStorage.setItem(
-		'pauseTime',
-		JSON.stringify([timerTime.getHours(), timerTime.getMinutes(), timerTime.getSeconds(), timerTime.getMilliseconds()])
-	);
+	if (timerTime) {
+		timerTime = new vTime(timerTime[0], timerTime[1], timerTime[2], timerTime[3]);
+		localStorage.setItem(
+			'pauseTime',
+			JSON.stringify([timerTime.getHours(), timerTime.getMinutes(), timerTime.getSeconds(), timerTime.getMilliseconds()])
+		);
+	}
 
 	start.textContent = '开始计时';
 	localStorage.removeItem('timerTime');
@@ -96,6 +103,11 @@ window.addEventListener('DOMContentLoaded', () => {
 	// 点击重置按钮重置钟表
 	const reset = document.getElementById('reset-button');
 	reset.addEventListener('click', function handleReset() {
+		//启用输入
+		document.getElementById('hour').disabled = false;
+		document.getElementById('minute').disabled = false;
+		document.getElementById('second').disabled = false;
+
 		handlePause();
 		localStorage.removeItem('timerTime');
 		localStorage.removeItem('pauseTime');
