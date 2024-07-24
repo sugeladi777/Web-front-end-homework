@@ -43,3 +43,19 @@ button {
 #clock {
 	scale: 80%;
 }
+#small-ticks {
+	transform: translate(0, -80px);
+}
+
+#small-numbers {
+	font-size: 18px;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	pointer-events: none;
+}
+
+#ticks line {
+	stroke: #c9d2dd;
+}
+#small-ticks line {
+	stroke: #c9d2dd;
+}

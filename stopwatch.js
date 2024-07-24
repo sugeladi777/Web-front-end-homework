@@ -79,7 +79,6 @@ function updateClock(time) {
 	secondDeg = (360 / 60) * (seconds + milliseconds / 1000);
 
 	//更新时针指针角度
-	hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
-	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
+	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 170)`);
 	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
 }
