@@ -178,6 +178,10 @@ function updateClock(time) {
 
 	time.decreaseMilliseconds(interval);
 	localStorage.setItem('timerTime', JSON.stringify([time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds()]));
+	//禁止输入
+	document.getElementById('hour').disabled = true;
+	document.getElementById('minute').disabled = true;
+	document.getElementById('second').disabled = true;
 	//倒计时结束
 	if (time.getHours() == 0 && time.getMinutes() == 0 && time.getSeconds() == 0 && time.getMilliseconds() == 0) {
 		handleReset();

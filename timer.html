@@ -17,76 +17,81 @@
 		<div id="center">
 			<!-- 时钟模型 -->
 			<svg id="clock" width="500" height="500">
+				<defs>
+					<linearGradient id="linearGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+						<stop offset="0%" style="stop-color: rgb(231, 231, 240)" />
+						<stop offset="100%" style="stop-color: rgb(255, 255, 255)" />
+					</linearGradient>
+				</defs>
 				<!-- 时钟表盘 -->
-				<circle id="clock_dial" cx="250" cy="250" r="250" fill="#ffffff"></circle>
+				<circle id="clock_dial" cx="250" cy="250" r="250" fill="url(#linearGradient)"></circle>
 				<!-- 时钟刻度 -->
 				<g id="ticks">
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(6,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(12,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(18,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(24,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(30,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(36,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(42,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(48,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(54,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(60,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(66,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(72,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(78,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(84,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(90,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(96,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(102,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(108,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(114,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(120,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(126,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(132,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(138,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(144,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(150,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(156,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(162,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(168,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(174,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(180,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(186,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(192,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(198,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(204,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(210,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(216,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(222,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(228,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(234,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(240,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(246,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(252,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(258,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(264,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(270,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(276,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(282,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(288,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(294,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(300,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(306,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(312,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(318,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(324,250,250)"></line>
-					<line x1="450" y1="250" x2="500" y2="250" stroke="black" stroke-width="10" transform="rotate(330,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(336,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(342,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(348,250,250)"></line>
-					<line x1="480" y1="250" x2="500" y2="250" stroke="black" stroke-width="5" transform="rotate(354,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(6,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(12,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(18,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(24,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(30,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(36,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(42,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(48,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(54,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(60,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(66,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(72,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(78,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(84,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(90,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(96,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(102,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(108,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(114,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(120,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(126,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(132,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(138,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(144,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(150,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(156,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(162,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(168,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(174,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(180,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(186,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(192,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(198,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(204,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(210,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(216,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(222,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(228,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(234,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(240,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(246,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(252,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(258,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(264,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(270,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(276,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(282,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(288,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(294,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(300,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(306,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(312,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(318,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(324,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(330,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(336,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(342,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(348,250,250)"></line>
+					<line x1="460" y1="250" x2="480" y2="250" stroke="black" stroke-width="5" transform="rotate(354,250,250)"></line>
 				</g>
 				<!-- 钟表指针 -->
 				<g id="clock_hand">
 					<g id="second-hand">
-						<line x1="250" y1="250" x2="250" y2="50" stroke="red" stroke-width="3" id="second-hand" />
-						<circle cx="250" cy="50" r="8" fill="red" stroke-width="5" id="second-hand-drag"></circle>
+						<line x1="250" y1="250" x2="250" y2="20" stroke="red" stroke-width="3" id="second-hand" />
 					</g>
 				</g>
 			</svg>
