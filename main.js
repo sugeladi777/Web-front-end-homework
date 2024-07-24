@@ -313,7 +313,7 @@ window.onload = function () {
 		vtime = new vTime(hours, minutes, seconds, 0);
 
 		// 同时更改pm
-		pm = 0;
+		pm = hours >= 12 ? 1 : 0;
 		//存储当前时间
 		sessionStorage.setItem('now', JSON.stringify([hours, minutes, seconds, 0]));
 	}
