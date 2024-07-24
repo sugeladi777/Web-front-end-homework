@@ -50,8 +50,10 @@ function updateClock() {
 		const seconds = parseFloat(now.getSeconds());
 		const milliseconds = parseFloat(now.getMilliseconds());
 
+		if (!realTime) {
+			localStorage.setItem('now', JSON.stringify([hours, minutes, seconds, milliseconds]));
+		}
 		//存储当前时间
-		localStorage.setItem('now', JSON.stringify([hours, minutes, seconds, milliseconds]));
 
 		//更新数字时间显示
 		// const timeString = `${String((hours + pm * 12).toFixed(0)).padStart(2, '0')} : ${String(minutes.toFixed(0)).padStart(2, '0')} : ${String(
