@@ -5,9 +5,21 @@
 }
 body {
 	min-width: 500px;
-	background-color: black;
+	background-color: #f3f4f6;
 	font-family: 'Microsoft YaHei', 'SimHei', 'Apple LiGothic Medium';
 }
+video{  
+	position: fixed;  
+	right: 0px;  
+	bottom: 0px;  
+	min-width: 100%;  
+	min-height: 100%;  
+	height: auto;  
+	width: auto;  
+	/* 灰色滤镜 */
+	filter:grayscale(100%);  
+}
+
 #center {
 	position: relative;
 	top: 100px;
