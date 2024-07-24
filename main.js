@@ -1,4 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
+	// 返回主页面时保持之前设置的时间;
+	var curTime = JSON.parse(sessionStorage.getItem('now'));
+	if (curTime) {
+		console.log(curTime);
+		vtime = new vTime(parseInt(curTime[0]), parseInt(curTime[1]), parseInt(curTime[2]), parseInt(curTime[3]));
+		realTime = false;
+		pm = curTime[0] >= 12 ? 1 : 0;
+	}
 	// 设置拖动效果
 	setDrag();
 	// 更新钟表
@@ -50,17 +58,10 @@ function updateClock() {
 		const seconds = parseFloat(now.getSeconds());
 		const milliseconds = parseFloat(now.getMilliseconds());
 
-		if (!realTime) {
-			localStorage.setItem('now', JSON.stringify([hours, minutes, seconds, milliseconds]));
-		}
-		//存储当前时间
+		sessionStorage.setItem('now', JSON.stringify([hours + pm * 12, minutes, seconds, milliseconds]));
 
 		//更新数字时间显示
-		// const timeString = `${String((hours + pm * 12).toFixed(0)).padStart(2, '0')} : ${String(minutes.toFixed(0)).padStart(2, '0')} : ${String(
-		// 	seconds.toFixed(0)
-		// ).padStart(2, '0')}`;
-		// document.getElementById('time-display').textContent = timeString;
-		updateDigit('digit-hour', hours);
+		updateDigit('digit-hour', hours + pm * 12);
 		updateDigit('digit-minute', minutes);
 		updateDigit('digit-second', seconds);
 
@@ -232,11 +233,11 @@ function mod(n, m) {
 
 //根据选择启用不同功能
 window.onload = function () {
-	var curTime = JSON.parse(localStorage.getItem('now'));
-	if (curTime) {
-		vtime = new vTime(parseInt(curTime[0]), parseInt(curTime[1]), parseInt(curTime[2]), parseInt(curTime[3]));
-		realTime = false;
-	}
+	// var curTime = JSON.parse(localStorage.getItem('now'));
+	// if (curTime) {
+	// 	vtime = new vTime(parseInt(curTime[0]), parseInt(curTime[1]), parseInt(curTime[2]), parseInt(curTime[3]));
+	// 	realTime = false;
+	// }
 	var clockFunction = document.getElementById('clock-functions');
 	if (clockFunction) {
 		clockFunction.addEventListener('change', (event) => {
@@ -310,32 +311,11 @@ window.onload = function () {
 
 		realTime = false;
 		vtime = new vTime(hours, minutes, seconds, 0);
+
+		// 同时更改pm
+		pm = 0;
 		//存储当前时间
-		localStorage.setItem('now', JSON.stringify([hours, minutes, seconds, 0]));
+		sessionStorage.setItem('now', JSON.stringify([hours, minutes, seconds, 0]));
 	}
 	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
 };
-function setTimeFromInput() {
-	const hours = parseInt(document.getElementById('time-input-hour').value, 10);
-	const minutes = parseInt(document.getElementById('time-input-minute').value, 10);
-	const seconds = parseInt(document.getElementById('time-input-second').value, 10);
-	if (
-		!isNaN(hours) &&
-		hours >= 0 &&
-		hours <= 23 &&
-		!isNaN(minutes) &&
-		minutes >= 0 &&
-		minutes <= 59 &&
-		!isNaN(seconds) &&
-		seconds >= 0 &&
-		seconds <= 59
-	) {
-		realTime = false;
-		vtime = new vTime(hours, minutes, seconds, 0);
-	} else {
-		alert('时间格式有误');
-	}
-}
-if (document.getElementById('time-input-button')) {
-	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
-}
