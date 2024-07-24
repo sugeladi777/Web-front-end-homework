@@ -1,11 +1,6 @@
 let update;
 
 function handleStart() {
-	//禁止输入
-	document.getElementById('hour').disabled = true;
-	document.getElementById('minute').disabled = true;
-	document.getElementById('second').disabled = true;
-
 	const start = document.getElementById('start-button');
 
 	var timerTime = JSON.parse(localStorage.getItem('timerTime'));
@@ -18,15 +13,22 @@ function handleStart() {
 	const second = parseInt(document.getElementById('second').value);
 	let millisecond = 0;
 
+	if (hour <= 0 && minute <= 0 && second <= 0) {
+		alert('请输入大于零的正确时间');
+		return;
+	}
+
+	//禁止输入
+	document.getElementById('hour').disabled = true;
+	document.getElementById('minute').disabled = true;
+	document.getElementById('second').disabled = true;
+
 	if (pauseTime && (pauseTime.getHours() > 0 || pauseTime.getMinutes() > 0 || pauseTime.getSeconds() > 0 || pauseTime.getMilliseconds() > 0)) {
 		millisecond = pauseTime.getMilliseconds();
 		timerTime = pauseTime;
 		localStorage.removeItem('pauseTime');
 	}
-	if (hour <= 0 && minute <= 0 && second <= 0) {
-		alert('请输入大于零的正确时间');
-		return;
-	}
+
 	var timerTime = new vTime(hour, minute, second, millisecond);
 	localStorage.setItem('timerTime', JSON.stringify([hour, minute, second, millisecond]));
 	localStorage.removeItem('pauseTime');
