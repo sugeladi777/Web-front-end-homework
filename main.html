@@ -106,10 +106,18 @@
 				</svg>
 			<!-- 数字显示 -->
 			<div>
-				<div id="background-hour"></div>
-				<div id="background-minute"></div>
-				<div id="background-second"></div>
-				<text id="time-display">00 : 00 : 00</text>
+				<div  id="background-hour">
+					<div class="time-number" id="digit-hour"></div>
+					<div class="partition">:</div>
+				</div>
+				<div  id="background-minute">
+					<div class="time-number" id="digit-minute"></div>
+					<div class="partition">:</div>
+				</div>
+				<div  id="background-second">
+					<div class="time-number" id="digit-second"></div>
+				</div>
+				<!-- <text id="time-display">00 : 00 : 00</text> -->
 			</div>
 			<!-- 功能选择 -->
 			<select id="clock-functions">

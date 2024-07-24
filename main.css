@@ -8,16 +8,16 @@ body {
 	background-color: #f3f4f6;
 	font-family: 'Microsoft YaHei', 'SimHei', 'Apple LiGothic Medium';
 }
-video{  
-	position: fixed;  
-	right: 0px;  
-	bottom: 0px;  
-	min-width: 100%;  
-	min-height: 100%;  
-	height: auto;  
-	width: auto;  
+video {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	height: auto;
+	width: auto;
 	/* 灰色滤镜 */
-	filter:grayscale(100%);  
+	filter: grayscale(100%);
 }
 
 #center {
@@ -37,87 +37,113 @@ text {
 	user-select: none;
 }
 
-#background-hour{
+#background-hour {
 	position: absolute;
-	left:148px;
-	top:548px;
-	width:50px;
-	height:50px;
-	background-color:white;
+	left: 148px;
+	top: 548px;
+	width: 50px;
+	height: 50px;
+	background-color: white;
 	border-radius: 10px;
 }
 
-#background-minute{
+#background-minute {
 	position: absolute;
-	left:224px;
-	top:548px;
-	width:50px;
-	height:50px;
-	background-color:white;
+	left: 224px;
+	top: 548px;
+	width: 50px;
+	height: 50px;
+	background-color: white;
 	border-radius: 10px;
 }
 
-#background-second{
+#background-second {
 	position: absolute;
-	left:302px;
-	top:548px;
-	width:50px;
-	height:50px;
-	background-color:white;
+	left: 302px;
+	top: 548px;
+	width: 50px;
+	height: 50px;
+	background-color: white;
 	border-radius: 10px;
 }
 
-#time-display{
+/* #time-display {
 	position: absolute;
-	left:150px;
-	top:550px;
-	font-size: 40px;  
-	font-family: Arial, sans-serif;  
+	left: 150px;
+	top: 550px;
+	font-size: 40px;
+	font-family: Arial, sans-serif;
 	color: black;
-	text-anchor: middle; 
+	text-anchor: middle;
+} */
+
+.time-number {
+	position: absolute;
+	left: 8px;
+	top: 5px;
+	font-size: 32px;
+	font-family: Arial, sans-serif;
+	color: black;
+	text-anchor: middle;
 }
 
-#clock-functions{
+.time-number{
+	transition: transform 0.5s ease-in-out;
+}
+
+.time-number.change {
+	transform: scale(1.2);
+}
+
+#clock-functions {
 	position: absolute;
-	left:175px;
-	top:650px;
-	width:150px;
-	height:50px;
+	left: 175px;
+	top: 650px;
+	width: 150px;
+	height: 50px;
 	font-size: 20px;
 }
 
-#time-input-hour{
+#time-input-hour {
 	position: absolute;
-	left:55px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 55px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
 }
 
-#time-input-minute{
+#time-input-minute {
 	position: absolute;
-	left:165px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 165px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
 }
 
-#time-input-second{
+#time-input-second {
 	position: absolute;
-	left:275px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 275px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
 }
 
-#time-input-button{
+#time-input-button {
 	position: absolute;
-	left:385px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 385px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
+}
+
+.partition{
+	font-size: 50px;
+	font-weight: 900;
+	position: absolute;
+	left: 55px;
+	top: -12px;
 }
