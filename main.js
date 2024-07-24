@@ -233,11 +233,6 @@ function mod(n, m) {
 
 //根据选择启用不同功能
 window.onload = function () {
-	// var curTime = JSON.parse(localStorage.getItem('now'));
-	// if (curTime) {
-	// 	vtime = new vTime(parseInt(curTime[0]), parseInt(curTime[1]), parseInt(curTime[2]), parseInt(curTime[3]));
-	// 	realTime = false;
-	// }
 	var clockFunction = document.getElementById('clock-functions');
 	if (clockFunction) {
 		clockFunction.addEventListener('change', (event) => {

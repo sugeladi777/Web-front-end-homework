@@ -2,7 +2,7 @@
 // 与Date()具有一些相同的接口
 window.addEventListener('DOMContentLoaded', () => {
 	// 获取本地时间
-	const curTime = localStorage.getItem('now');
+	const curTime = sessionStorage.getItem('now');
 	var now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
 	var stopWatchTime = new vTime(0, 0, 0, 0);
 	// 更新钟表
