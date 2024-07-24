@@ -308,6 +308,8 @@ window.onload = function () {
 
 		realTime = false;
 		vtime = new vTime(hours, minutes, seconds, 0);
+		//存储当前时间
+		localStorage.setItem('now', JSON.stringify([hours, minutes, seconds, 0]));
 	}
 	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
 };

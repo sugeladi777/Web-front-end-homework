@@ -77,7 +77,9 @@ class vTime {
 
 //获取虚拟时间
 curTime = JSON.parse(localStorage.getItem('now'));
-var now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
+if (curTime) {
+	var now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
+}
 //获取计时器时间
 curTime = JSON.parse(localStorage.getItem('timerTime'));
 if (curTime) var timerTime = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
