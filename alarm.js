@@ -39,30 +39,32 @@ function displayAlarms() {
 	let alarm_list = document.getElementById('alarm-list');
 	if (alarm_list.innerHTML) alarm_list.innerHTML = '';
 	// 遍历闹钟数组，创建闹钟元素
-	alarms.forEach(function (alarm) {
-		// 创建闹钟元素,显示小时和分钟
-		let alarm_item = document.createElement('div');
-		alarm_item.setAttribute('class', 'alarm-item');
-		alarm_item.innerHTML = formatTime(alarm.hour, alarm.minute);
-		alarm_list.appendChild(alarm_item);
-		// 创建闹钟名、删除按钮和添加按钮
-		let alarm_name = document.createElement('p');
-		alarm_name.setAttribute('class', 'alarm-name');
-		alarm_name.innerHTML = alarm.name;
-		alarm_item.appendChild(alarm_name);
-		let alarm_delete = document.createElement('button');
-		alarm_delete.setAttribute('class', 'delete-button');
-		alarm_delete.innerHTML = '删除';
-		alarm_item.appendChild(alarm_delete);
-		// 删除按钮的点击事件
-		alarm_delete.addEventListener('click', function () {
-			alarms = alarms.filter(function (a) {
-				return a.hour != alarm.hour || a.minute != alarm.minute;
+	if (alarms) {
+		alarms.forEach(function (alarm) {
+			// 创建闹钟元素,显示小时和分钟
+			let alarm_item = document.createElement('div');
+			alarm_item.setAttribute('class', 'alarm-item');
+			alarm_item.innerHTML = formatTime(alarm.hour, alarm.minute);
+			alarm_list.appendChild(alarm_item);
+			// 创建闹钟名、删除按钮和添加按钮
+			let alarm_name = document.createElement('p');
+			alarm_name.setAttribute('class', 'alarm-name');
+			alarm_name.innerHTML = alarm.name;
+			alarm_item.appendChild(alarm_name);
+			let alarm_delete = document.createElement('button');
+			alarm_delete.setAttribute('class', 'delete-button');
+			alarm_delete.innerHTML = '删除';
+			alarm_item.appendChild(alarm_delete);
+			// 删除按钮的点击事件
+			alarm_delete.addEventListener('click', function () {
+				alarms = alarms.filter(function (a) {
+					return a.hour != alarm.hour || a.minute != alarm.minute;
+				});
+				localStorage.setItem('alarmClocks', JSON.stringify(alarms));
+				displayAlarms();
 			});
-			localStorage.setItem('alarmClocks', JSON.stringify(alarms));
-			displayAlarms();
 		});
-	});
+	}
 }
 
 window.onload = function () {

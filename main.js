@@ -58,15 +58,20 @@ function updateClock() {
 		const seconds = parseFloat(now.getSeconds());
 		const milliseconds = parseFloat(now.getMilliseconds());
 
+		// if (!realTime) {
+		// 	sessionStorage.setItem('now', JSON.stringify([hours, minutes, seconds, milliseconds]));
+		// }
 		//存储当前时间
-		// localStorage.setItem('now', JSON.stringify([hours, minutes, seconds, milliseconds]));
 		sessionStorage.setItem('now', JSON.stringify([hours + pm * 12, minutes, seconds, milliseconds]));
 
 		//更新数字时间显示
-		const timeString = `${String((hours + pm * 12).toFixed(0)).padStart(2, '0')} : ${String(minutes.toFixed(0)).padStart(2, '0')} : ${String(
-			seconds.toFixed(0)
-		).padStart(2, '0')}`;
-		document.getElementById('time-display').textContent = timeString;
+		// const timeString = `${String((hours + pm * 12).toFixed(0)).padStart(2, '0')} : ${String(minutes.toFixed(0)).padStart(2, '0')} : ${String(
+		// 	seconds.toFixed(0)
+		// ).padStart(2, '0')}`;
+		// document.getElementById('time-display').textContent = timeString;
+		updateDigit('digit-hour', hours + pm * 12);
+		updateDigit('digit-minute', minutes);
+		updateDigit('digit-second', seconds);
 
 		// 获取dom树节点
 		const hourHand = document.getElementById('hour-hand');
@@ -82,6 +87,17 @@ function updateClock() {
 		hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
 		minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
 		secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
+	}
+}
+
+//设置数字变化的动画效果
+function updateDigit(id, value) {
+	const digit = document.getElementById(id);
+	const newValue = String(value).padStart(2, '0');
+	if (digit.textContent !== newValue) {
+		digit.classList.add('change');
+		setTimeout(() => digit.classList.remove('change'), 500);
+		digit.textContent = newValue;
 	}
 }
 
@@ -306,6 +322,8 @@ window.onload = function () {
 
 		// 同时更改pm
 		pm = 0;
+		//存储当前时间
+		sessionStorage.setItem('now', JSON.stringify([hours, minutes, seconds, 0]));
 	}
 	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
 };
