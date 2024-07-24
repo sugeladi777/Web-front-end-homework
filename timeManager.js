@@ -77,7 +77,7 @@ class vTime {
 }
 
 //获取虚拟时间
-curTime = JSON.parse(sessionStorage.getItem('now'));
+var curTime = JSON.parse(sessionStorage.getItem('now'));
 if (curTime) {
 	var now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
 }
@@ -87,16 +87,25 @@ if (curTime) var timerTime = new vTime(curTime[0], curTime[1], curTime[2], curTi
 
 function checkAlarm() {
 	alarms = JSON.parse(localStorage.getItem('alarmClocks'));
+
+	curTime = JSON.parse(sessionStorage.getItem('now'));
+	if (curTime) {
+		now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
+	}
+
 	if (alarms) {
 		alarms.forEach(function (alarm) {
+			var a = parseInt(alarm.hour);
+			var b = parseInt(alarm.minute);
+			var c = now.getSeconds().toFixed(0);
+			var d = now.getMilliseconds().toFixed(0);
 			if (
-				alarm.hour == now.getHours() &&
-				alarm.minute == now.getMinutes() &&
+				parseInt(alarm.hour) == now.getHours() &&
+				parseInt(alarm.minute) == now.getMinutes() &&
 				now.getSeconds().toFixed(0) == 0 &&
 				now.getMilliseconds().toFixed(0) == 0
 			) {
 				alert('闹钟响了:' + alarm.name);
-				location.reload();
 			}
 		});
 	}
