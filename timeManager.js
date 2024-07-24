@@ -29,6 +29,7 @@ class vTime {
 		}
 		if (this.hours == 0 && this.minutes == 0 && this.seconds == 0 && this.milliseconds == 0 && timeChange) {
 			alert('计时结束');
+			localStorage.removeItem('pauseTime');
 		}
 	}
 
@@ -76,7 +77,7 @@ class vTime {
 }
 
 //获取虚拟时间
-curTime = JSON.parse(localStorage.getItem('now'));
+curTime = JSON.parse(sessionStorage.getItem('now'));
 var now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
 //获取计时器时间
 curTime = JSON.parse(localStorage.getItem('timerTime'));
@@ -103,7 +104,7 @@ function manageTime() {
 	//不在主页面时，帮其时间增长;不在计时器页面时，帮其时间减少
 	if (location.href.slice(-9) != 'main.html') {
 		now.addMilliseconds(10);
-		localStorage.setItem('now', JSON.stringify([now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds()]));
+		sessionStorage.setItem('now', JSON.stringify([now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds()]));
 	}
 	if (location.href.slice(-10) != 'timer.html' && timerTime) {
 		timerTime.decreaseMilliseconds(10);
