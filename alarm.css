@@ -33,7 +33,7 @@ input {
 	height: 200px;
 	width: 100vw;
 	margin-top: 20px;
-	background-color: rgb(17, 17, 17);
+	background-color: rgb(17, 17, 17, 0.3);
 	border-radius: 10px;
 	font-size: 60px;
 	color: white;
@@ -41,7 +41,7 @@ input {
 
 .alarm-name {
 	font-size: 20px;
-	color: rgb(160, 160, 160);
+	color: rgb(213, 213, 213);
 }
 
 .delete-button {

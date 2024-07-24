@@ -16,6 +16,7 @@ video {
 	min-height: 100%;
 	height: auto;
 	width: auto;
+	z-index: -100;
 	/* 灰色滤镜 */
 	filter: grayscale(100%);
 }
@@ -87,7 +88,7 @@ text {
 	text-anchor: middle;
 }
 
-.time-number{
+.time-number {
 	transition: transform 0.5s ease-in-out;
 }
 
@@ -140,7 +141,7 @@ text {
 	font-size: 30px;
 }
 
-.partition{
+.partition {
 	font-size: 50px;
 	font-weight: 900;
 	position: absolute;
