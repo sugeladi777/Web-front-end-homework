@@ -1,6 +1,10 @@
 let update;
 
 function handleStart() {
+	if (hour <= 0 && minute <= 0 && second <= 0) {
+		alert('请输入大于零的正确时间');
+		return;
+	}
 	//禁止输入
 	document.getElementById('hour').disabled = true;
 	document.getElementById('minute').disabled = true;
@@ -23,10 +27,7 @@ function handleStart() {
 		timerTime = pauseTime;
 		localStorage.removeItem('pauseTime');
 	}
-	if (hour <= 0 && minute <= 0 && second <= 0) {
-		alert('请输入大于零的正确时间');
-		return;
-	}
+
 	var timerTime = new vTime(hour, minute, second, millisecond);
 	localStorage.setItem('timerTime', JSON.stringify([hour, minute, second, millisecond]));
 	localStorage.removeItem('pauseTime');
