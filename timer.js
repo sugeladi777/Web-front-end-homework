@@ -38,6 +38,14 @@ function handleStart() {
 	start.textContent = '暂停';
 	start.removeEventListener('click', handleStart);
 	start.addEventListener('click', handlePause);
+
+	if (!pauseTime && timerTime) {
+		//储存倒计时总时间
+		localStorage.setItem(
+			'sumTime',
+			timerTime.getHours() * 3600 + timerTime.getMinutes() * 60 + timerTime.getSeconds() + timerTime.getMilliseconds() / 1000
+		);
+	}
 }
 
 function handlePause() {
@@ -60,6 +68,19 @@ function handlePause() {
 	start.addEventListener('click', handleStart); // 添加事件监听器
 }
 
+function handleReset() {
+	//启用输入
+	document.getElementById('hour').disabled = false;
+	document.getElementById('minute').disabled = false;
+	document.getElementById('second').disabled = false;
+
+	handlePause();
+	localStorage.removeItem('timerTime');
+	localStorage.removeItem('pauseTime');
+	localStorage.removeItem('sumTime');
+	location.reload();
+}
+
 // 定义虚拟时间
 // 与Date()具有一些相同的接口
 window.addEventListener('DOMContentLoaded', () => {
@@ -79,6 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			document.getElementById('hour').value = pauseTime.getHours();
 			document.getElementById('minute').value = pauseTime.getMinutes();
 			document.getElementById('second').value = pauseTime.getSeconds();
+			// 更新表盘画面
 			pauseTime.addMilliseconds(10);
 			updateClock(pauseTime);
 		}
@@ -100,19 +122,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	document.getElementById('back').addEventListener('click', function () {
 		window.location.href = './main.html';
 	});
+
 	// 点击重置按钮重置钟表
 	const reset = document.getElementById('reset-button');
-	reset.addEventListener('click', function handleReset() {
-		//启用输入
-		document.getElementById('hour').disabled = false;
-		document.getElementById('minute').disabled = false;
-		document.getElementById('second').disabled = false;
-
-		handlePause();
-		localStorage.removeItem('timerTime');
-		localStorage.removeItem('pauseTime');
-		location.reload();
-	});
+	reset.addEventListener('click', handleReset);
 	// 为输入框添加输入事件
 	const inputHour = document.getElementById('hour');
 	const inputMinute = document.getElementById('minute');
@@ -165,8 +178,9 @@ function updateClock(time) {
 
 	time.decreaseMilliseconds(interval);
 	localStorage.setItem('timerTime', JSON.stringify([time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds()]));
+	//倒计时结束
 	if (time.getHours() == 0 && time.getMinutes() == 0 && time.getSeconds() == 0 && time.getMilliseconds() == 0) {
-		handlePause();
+		handleReset();
 	}
 
 	// 获取当前时间
@@ -182,17 +196,17 @@ function updateClock(time) {
 	document.getElementById('second').value = seconds;
 
 	// 获取dom树节点
-	const hourHand = document.getElementById('hour-hand');
-	const minuteHand = document.getElementById('minute-hand');
+	// const hourHand = document.getElementById('hour-hand');
+	// const minuteHand = document.getElementById('minute-hand');
 	const secondHand = document.getElementById('second-hand');
+	const curTime = hours * 3600 + minutes * 60 + seconds + milliseconds / 1000;
 
 	// 获取时钟指针角度
-	hourDeg = (360 / 12) * (hours + minutes / 60 + seconds / 3600 + milliseconds / 3600000);
-	minuteDeg = (360 / 60) * (minutes + seconds / 60 + milliseconds / 60000);
-	secondDeg = (360 / 60) * (seconds + milliseconds / 1000);
+	sumTime = parseFloat(localStorage.getItem('sumTime'));
+	secondDeg = 360 * (curTime / sumTime);
 
 	//更新时针指针角度
-	hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
-	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
+	// hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
+	// minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
 	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
 }
