@@ -1,11 +1,3 @@
-#add-block {
-	align-content: center;
-	align-self: center;
-	font-size: 17px;
-	margin-bottom: 20px;
-	scale: 200%;
-	color: white;
-}
 input {
 	width: 40px;
 	height: 30px;
@@ -16,4 +8,17 @@ input {
 	border-radius: 5px;
 	color: white;
 	text-align: center;
+}
+
+#add-block {
+	align-content: center;
+	align-self: center;
+	font-size: 17px;
+	margin-bottom: 20px;
+	scale: 200%;
+	color: white;
+}
+
+#ticks line {
+	stroke: #c9d2dd;
 }
