@@ -4,7 +4,7 @@
 	padding: 0;
 }
 body {
-	min-width: 500px;
+	min-width: 700px;
 	background-color: #f3f4f6;
 	font-family: 'Microsoft YaHei', 'SimHei', 'Apple LiGothic Medium';
 }
@@ -24,7 +24,7 @@ video {
 #center {
 	position: relative;
 	top: 100px;
-	width: 500px;
+	width: 700px;
 	height: 100%;
 	margin: auto;
 }
@@ -67,16 +67,6 @@ text {
 	background-color: white;
 	border-radius: 10px;
 }
-
-/* #time-display {
-	position: absolute;
-	left: 150px;
-	top: 550px;
-	font-size: 40px;
-	font-family: Arial, sans-serif;
-	color: black;
-	text-anchor: middle;
-} */
 
 .time-number {
 	position: absolute;
