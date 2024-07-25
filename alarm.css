@@ -56,14 +56,14 @@ input {
 #add-block {
 	display: flex;
 	background-color: rgb(117, 117, 117);
-	position: fixed;
+	position: absolute;
 	align-items: center;
 	justify-content: center;
 	width: 530px;
 	height: 80px;
 	border-radius: 10px;
-	top: 570px;
-	left: 960px;
+	bottom: -600px;
+	right: 0px;
 }
 
 #add-button {
