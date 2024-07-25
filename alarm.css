@@ -10,7 +10,7 @@ body {
 button {
 	width: 120px;
 	height: 45px;
-	background-color: rgb(105, 206, 104);
+	/* background-color: rgb(105, 206, 104); */
 	font-size: 20px;
 	font-weight: bold;
 	color: white;
@@ -18,7 +18,20 @@ button {
 	border-radius: 5px;
 	border-style: solid;
 }
-
+#add-button {
+	width: 120px;
+	height: 45px;
+	background-color: rgb(105, 206, 104);
+	font-size: 20px;
+	color: white;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}
+#add-button:hover{
+	background-color: #fff;
+	color: rgb(105, 206, 104);
+	border: 1px solid #ccc;
+}
 input {
 	background-color: rgb(141, 138, 138);
 	width: 35px;
@@ -35,7 +48,7 @@ input {
 	justify-content: center;
 	align-items: center;
 	height: 200px;
-	width: 100vw;
+	width: 80vw;
 	margin-top: 20px;
 	background-color: rgb(17, 17, 17, 0.3);
 	border-radius: 10px;
@@ -55,6 +68,13 @@ input {
 	background-color: rgb(241, 121, 121);
 	font-size: 20px;
 	color: white;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}
+.delete-button:hover{
+	background-color: #fff;
+	color: rgb(241, 121, 121);
+	border: 1px solid #ccc;
 }
 
 #add-block {
@@ -70,13 +90,6 @@ input {
 	right: 0px;
 }
 
-#add-button {
-	width: 120px;
-	height: 45px;
-	background-color: rgb(105, 206, 104);
-	font-size: 20px;
-	color: white;
-}
 
 #name {
 	width: 100px;
@@ -87,9 +100,12 @@ input {
 	position: absolute;
 	left: 60px;
 	top: 30px;
+	padding: 0;
+	font-size: 20px;
 }
 
 #alarm-list{
 	position: absolute;
+	right: 0px;
 	top: 0px;
 }
