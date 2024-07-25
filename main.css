@@ -7,6 +7,8 @@ body {
 	min-width: 500px;
 	background-color: #f3f4f6;
 	font-family: 'Microsoft YaHei', 'SimHei', 'Apple LiGothic Medium';
+
+	min-height: 500px;
 }
 video {
 	position: fixed;
@@ -27,6 +29,8 @@ video {
 	width: 500px;
 	height: 100%;
 	margin: auto;
+
+	float: left;
 }
 .number {
 	font-size: 24px;
@@ -98,47 +102,25 @@ text {
 
 #clock-functions {
 	position: absolute;
-	left: 175px;
-	top: 650px;
+	left: 50px;
+	top: 125px;
 	width: 150px;
 	height: 50px;
-	font-size: 20px;
 }
 
-#time-input-hour {
-	position: absolute;
-	left: 55px;
-	top: 750px;
+#popup input,
+#popup button {
+	position: relative;
+	top: 25px;
 	width: 100px;
 	height: 50px;
 	font-size: 30px;
-}
+	font-weight: bold;
+	border: 2px solid gray;
 
-#time-input-minute {
-	position: absolute;
-	left: 165px;
-	top: 750px;
-	width: 100px;
-	height: 50px;
-	font-size: 30px;
-}
+	margin-left: 20px;
 
-#time-input-second {
-	position: absolute;
-	left: 275px;
-	top: 750px;
-	width: 100px;
-	height: 50px;
-	font-size: 30px;
-}
-
-#time-input-button {
-	position: absolute;
-	left: 385px;
-	top: 750px;
-	width: 100px;
-	height: 50px;
-	font-size: 30px;
+	float: left;
 }
 
 .partition {
@@ -147,4 +129,67 @@ text {
 	position: absolute;
 	left: 55px;
 	top: -12px;
+}
+
+#aside {
+	position: relative;
+
+	top: 0px;
+	left: 0px;
+	width: 250px;
+
+	margin-right: 20%;
+	float: left;
+
+	min-height: 500px;
+
+	background-color: rgba(255, 255, 255, 0.5);
+
+	/* padding-top: 100px;
+	padding-bottom: 100px; */
+
+	height: 100vh;
+}
+
+#clock-functions button {
+	width: 100%;
+	height: 70px;
+
+	float: left;
+	margin-top: 35px;
+	border-radius: 5px;
+	border-style: solid;
+	background-color: rgb(105, 206, 104);
+	color: white;
+
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: none;
+}
+
+#popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	display: none;
+
+	width: 500px;
+	height: 100px;
+
+	border: 5px solid gray;
+	border-radius: 5px;
 }
