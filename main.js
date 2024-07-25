@@ -13,8 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	setInterval(updateClock, interval); // 每10毫秒更新一次时钟，因此时钟显示为100帧
 });
 
-//test
-
 // 表示是否是现实时间
 let realTime = true;
 

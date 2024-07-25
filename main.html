@@ -83,10 +83,10 @@
 				</g>
 				<!-- 3、6、9、12四个数字 -->
 				<g id="numbers" transform="translate(250,250)">
-					<text x="-15" y="-175" class="number">12</text>
+					<text x="-25" y="-175" class="number">12</text>
 					<text x="180" y="8" class="number">3</text>
-					<text x="-8" y="195" class="number">6</text>
-					<text x="-190" y="10" class="number">9</text>
+					<text x="-14" y="195" class="number">6</text>
+					<text x="-200" y="10" class="number">9</text>
 				</g>
 				<!-- 钟表指针 -->
 				<g id="clock_hand">
@@ -107,14 +107,18 @@
 			</svg>
 			<!-- 数字显示 -->
 			<div>
-				<svg width="400" height="400" x="300" y="300">
-					<rect x="303" y="43" width="50" height="50" fill="white" rx="15" ry="15" /> 
-					<rect x="225" y="43" width="50" height="50" fill="white" rx="15" ry="15" /> 
-					<rect x="148" y="43" width="50" height="50" fill="white" rx="15" ry="15" /> 
-				</svg>
-				<text id="time-display">00 : 00 : 00</text>
-				<text id="time-display1" >:</text>
-				<text id="time-display2" >:</text>
+				<div id="background-hour">
+					<div class="time-number" id="digit-hour"></div>
+					<div class="partition">:</div>
+				</div>
+				<div id="background-minute">
+					<div class="time-number" id="digit-minute"></div>
+					<div class="partition">:</div>
+				</div>
+				<div id="background-second">
+					<div class="time-number" id="digit-second"></div>
+				</div>
+				<!-- <text id="time-display">00 : 00 : 00</text> -->
 			</div>
 			<!-- 功能选择 -->
 			<select id="clock-functions">
