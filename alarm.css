@@ -66,7 +66,7 @@ input {
 	width: 530px;
 	height: 80px;
 	border-radius: 10px;
-	bottom: -600px;
+	bottom: 300px;
 	right: 0px;
 }
 
@@ -87,4 +87,9 @@ input {
 	position: absolute;
 	left: 60px;
 	top: 30px;
+}
+
+#alarm-list{
+	position: absolute;
+	top: 0px;
 }
