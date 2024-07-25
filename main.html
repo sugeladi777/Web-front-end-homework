@@ -12,6 +12,7 @@
 	<body>
 		<!-- 动态背景 -->
 		<video src="./mp4/background.mp4" autoplay loop muted></video>
+		<div id="nonBlockingAlert"><span id="alert-text">this is a non-blocking alert!</span> <button id="close">关闭</button></div>
 
 		<div id="aside">
 			<div id="clock-functions">
@@ -23,9 +24,9 @@
 			</div>
 		</div>
 		<div id="center">
-			<svg id="clock" width="500" height="500">
+			<svg id="clock" width="600" height="600" viewBox="-50 -50 700 700">
 				<!-- 时钟表盘 -->
-				<circle id="clock_dial" cx="250" cy="250" r="250" fill="#f6f7fb"></circle>
+				<circle id="clock_dial" cx="250" cy="250" r="300" fill="#f6f7fb"></circle>
 				<!-- 时钟刻度 -->
 				<g id="ticks">
 					<line x1="470" y1="250" x2="500" y2="250" stroke="#5c5c5c" stroke-width="7"></line>
@@ -99,15 +100,15 @@
 				<!-- 钟表指针 -->
 				<g id="clock_hand">
 					<g id="hour-hand">
-						<line x1="250" y1="250" x2="250" y2="150" stroke="#2c2d2f" stroke-width="8" />
+						<line x1="250" y1="250" x2="250" y2="100" stroke="#2c2d2f" stroke-width="8" />
 						<circle cx="250" cy="150" r="12" stroke="#2c2d2f" stroke-width="2" id="hour-hand-drag"></circle>
 					</g>
 					<g id="minute-hand">
-						<line x1="250" y1="250" x2="250" y2="100" stroke="#58595e" stroke-width="5" />
+						<line x1="250" y1="250" x2="250" y2="50" stroke="#58595e" stroke-width="5" />
 						<circle cx="250" cy="100" r="10" fill="#58595e" stroke-width="5" id="minute-hand-drag"></circle>
 					</g>
 					<g id="second-hand">
-						<line x1="250" y1="250" x2="250" y2="50" stroke="#db7150" stroke-width="3" id="second-hand" />
+						<line x1="250" y1="250" x2="250" y2="0" stroke="#db7150" stroke-width="3" id="second-hand" />
 						<circle cx="250" cy="50" r="8" fill="#db7150" stroke-width="5" id="second-hand-drag"></circle>
 					</g>
 					<circle cx="250" cy="250" r="5" fill=""></circle>

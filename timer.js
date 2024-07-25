@@ -1,11 +1,18 @@
 let update;
 
-function handleStart() {
-	//禁止输入
-	document.getElementById('hour').disabled = true;
-	document.getElementById('minute').disabled = true;
-	document.getElementById('second').disabled = true;
+function showNonBlockingAlert(message) {
+	var alertBox = document.getElementById('nonBlockingAlert');
+	alertBox.style.display = 'flex';
+	var alertText = document.getElementById('alert-text');
+	alertText.innerHTML = message;
 
+	// 点击关闭按钮关闭
+	document.getElementById('close').addEventListener('click', function () {
+		alertBox.style.display = 'none';
+	});
+}
+
+function handleStart() {
 	const start = document.getElementById('start-button');
 
 	var timerTime = JSON.parse(localStorage.getItem('timerTime'));
@@ -18,15 +25,22 @@ function handleStart() {
 	const second = parseInt(document.getElementById('second').value);
 	let millisecond = 0;
 
+	if (hour <= 0 && minute <= 0 && second <= 0) {
+		showNonBlockingAlert('请输入大于零的正确时间');
+		return;
+	}
+
+	//禁止输入
+	document.getElementById('hour').disabled = true;
+	document.getElementById('minute').disabled = true;
+	document.getElementById('second').disabled = true;
+
 	if (pauseTime && (pauseTime.getHours() > 0 || pauseTime.getMinutes() > 0 || pauseTime.getSeconds() > 0 || pauseTime.getMilliseconds() > 0)) {
 		millisecond = pauseTime.getMilliseconds();
 		timerTime = pauseTime;
 		localStorage.removeItem('pauseTime');
 	}
-	if (hour <= 0 && minute <= 0 && second <= 0) {
-		alert('请输入大于零的正确时间');
-		return;
-	}
+
 	var timerTime = new vTime(hour, minute, second, millisecond);
 	localStorage.setItem('timerTime', JSON.stringify([hour, minute, second, millisecond]));
 	localStorage.removeItem('pauseTime');
@@ -78,7 +92,14 @@ function handleReset() {
 	localStorage.removeItem('timerTime');
 	localStorage.removeItem('pauseTime');
 	localStorage.removeItem('sumTime');
-	location.reload();
+
+	// 重置时间
+	var time = new vTime(0, 0, 0, 0);
+	document.getElementById('hour').value = time.getHours();
+	document.getElementById('minute').value = time.getMinutes();
+	document.getElementById('second').value = time.getSeconds();
+	const secondHand = document.getElementById('second-hand');
+	secondHand.setAttribute('transform', `rotate(${0}, 250, 250)`);
 }
 
 // 定义虚拟时间
@@ -148,8 +169,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (e.target.value < 0) {
 			e.target.value = 0;
 		}
-
-		// TODO: 点击跳转网页
 	});
 });
 

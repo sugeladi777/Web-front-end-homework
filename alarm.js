@@ -1,6 +1,8 @@
 //添加闹钟到本地存储,参数为小时，分钟，闹钟名
 function addAlarm(h, m, n) {
 	alarms = JSON.parse(localStorage.getItem('alarmClocks'));
+	if (!alarms) alarms = [];
+
 	let new_alarm = { hour: h, minute: m, name: n };
 	alarms.push(new_alarm);
 	// 按小时和分钟对闹钟数组进行排序
@@ -76,6 +78,7 @@ window.onload = function () {
 		//检查输入的时间是否已有闹钟
 		alarms = JSON.parse(localStorage.getItem('alarmClocks'));
 		if (
+			alarms &&
 			alarms.some(function (alarm) {
 				return alarm.hour == hour && alarm.minute == minute;
 			})

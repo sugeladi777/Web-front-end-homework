@@ -4,7 +4,7 @@
 	padding: 0;
 }
 body {
-	min-width: 500px;
+	min-width: 700px;
 	background-color: #f3f4f6;
 	font-family: 'Microsoft YaHei', 'SimHei', 'Apple LiGothic Medium';
 
@@ -26,7 +26,7 @@ video {
 #center {
 	position: relative;
 	top: 100px;
-	width: 500px;
+	width: 700px;
 	height: 100%;
 	margin: auto;
 
@@ -71,16 +71,6 @@ text {
 	background-color: white;
 	border-radius: 10px;
 }
-
-/* #time-display {
-	position: absolute;
-	left: 150px;
-	top: 550px;
-	font-size: 40px;
-	font-family: Arial, sans-serif;
-	color: black;
-	text-anchor: middle;
-} */
 
 .time-number {
 	position: absolute;
@@ -192,4 +182,37 @@ text {
 
 	border: 5px solid gray;
 	border-radius: 5px;
+}
+
+#nonBlockingAlert {
+	display: none; /* Hidden by default */
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	position: fixed;
+	overflow: auto;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background-color: rgb(65, 66, 67);
+	font-size: 20px;
+	color: white;
+	z-index: 100;
+	width: 150px;
+	height: 80px;
+}
+#alert-text {
+	text-wrap: nowrap;
+	position: absolute;
+	top: 20px;
+}
+#close {
+	position: absolute;
+	bottom: 10px;
+	display: block;
+	font-size: 20px;
+	width: 60px;
+	height: 40px;
+	background-color: rgb(197, 99, 99);
 }
