@@ -22,3 +22,13 @@ input {
 #ticks line {
 	stroke: #c9d2dd;
 }
+#back {
+	width: 100px;
+	position: absolute;
+	left: 60px;
+	top: 30px;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+}
+#start-button

@@ -10,6 +10,9 @@ body {
 
 	min-height: 500px;
 }
+button{
+	cursor: pointer;
+}
 video {
 	position: fixed;
 	right: 0px;
@@ -145,10 +148,7 @@ text {
 
 	float: left;
 	margin-top: 35px;
-	/* border-radius: 5px; */
 	border-style: solid;
-	/* background-color: rgb(105, 206, 104); */
-	/* color: white; */
 
 	font-size: 20px;
 	font-weight: bold;
@@ -163,7 +163,7 @@ text {
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
+	font-size: 20px;
 	margin: 4px 2px;
 	-webkit-transition-duration: 0.4s;
 	transition-duration: 0.4s;
