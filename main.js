@@ -1,4 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
+	// 返回主页面时保持之前设置的时间;
+	var curTime = JSON.parse(sessionStorage.getItem('now'));
+	if (curTime) {
+		console.log(curTime);
+		vtime = new vTime(parseInt(curTime[0]), parseInt(curTime[1]), parseInt(curTime[2]), parseInt(curTime[3]));
+		realTime = false;
+		pm = curTime[0] >= 12 ? 1 : 0;
+	}
 	// 设置拖动效果
 	setDrag();
 	// 更新钟表
@@ -21,6 +29,9 @@ let secondDeg = 0;
 // 定义时钟刷新的频率
 const interval = 10;
 
+// 定义是否是p.m
+let pm = 0;
+
 var vtime = new vTime(0, 0, 0, 0);
 
 // 更新时钟
@@ -30,8 +41,15 @@ function updateClock() {
 		// 更新虚拟时间
 		if (realTime) {
 			vtime.copyFrom(new Date());
+			pm = vtime.getHours() >= 12 ? 1 : 0;
 		} else {
+			// 注意更新是否是pm
+			let h1 = vtime.getHours();
 			vtime.addMilliseconds(interval);
+			let h2 = vtime.getHours();
+			if (h1 + h2 == 23) {
+				pm = 1 - pm;
+			}
 		}
 		// 获取当前时间
 		const now = realTime ? new Date() : vtime; // TODO
@@ -39,19 +57,13 @@ function updateClock() {
 		const minutes = now.getMinutes();
 		const seconds = parseFloat(now.getSeconds());
 		const milliseconds = parseFloat(now.getMilliseconds());
-		let hoursDisplay = now.getHours() % 24;
-		if (hoursDisplay < 0) {
-			hoursDisplay = 0;
-		}
 
-		//存储当前时间
-		localStorage.setItem('now', JSON.stringify([hours, minutes, seconds, milliseconds]));
+		sessionStorage.setItem('now', JSON.stringify([hours + pm * 12, minutes, seconds, milliseconds]));
 
 		//更新数字时间显示
-		const timeString = `${String(hoursDisplay.toFixed(0)).padStart(2, '0')} : ${String(minutes.toFixed(0)).padStart(2, '0')} : ${String(
-			seconds.toFixed(0)
-		).padStart(2, '0')}`;
-		document.getElementById('time-display').textContent = timeString;
+		updateDigit('digit-hour', hours + pm * 12);
+		updateDigit('digit-minute', minutes);
+		updateDigit('digit-second', seconds);
 
 		// 获取dom树节点
 		const hourHand = document.getElementById('hour-hand');
@@ -67,6 +79,17 @@ function updateClock() {
 		hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
 		minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
 		secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
+	}
+}
+
+//设置数字变化的动画效果
+function updateDigit(id, value) {
+	const digit = document.getElementById(id);
+	const newValue = String(value).padStart(2, '0');
+	if (digit.textContent !== newValue) {
+		digit.classList.add('change');
+		setTimeout(() => digit.classList.remove('change'), 500);
+		digit.textContent = newValue;
 	}
 }
 
@@ -98,15 +121,12 @@ function setDrag() {
 
 	clock.addEventListener('mousemove', (event) => {
 		if (dragHand) {
-			const hand = event.target;
-
 			console.log('move');
 
 			let dx = event.clientX - (clock.getBoundingClientRect().left + 250);
 			let dy = event.clientY - (clock.getBoundingClientRect().top + 250);
 			let deg = slopeToDeg(dx, dy);
 			let ddeg = 0;
-			// console.log(dx, dy, deg);
 
 			let degs = [hourDeg, minuteDeg, secondDeg];
 
@@ -114,19 +134,21 @@ function setDrag() {
 
 			// 特殊情况处理，度过0
 			let clockwise = 0;
-			if (0 < deg && deg < 30 && 330 < degs[dragHand - 1] && degs[dragHand - 1] < 360) {
-				console.log('zheng');
+			if (0 <= deg && deg < 30 && 330 < degs[dragHand - 1] && degs[dragHand - 1] < 360) {
 				clockwise = 1;
-			} else if (330 < deg && deg < 360 && 0 < degs[dragHand - 1] && degs[dragHand - 1] < 30) {
-				console.log('ni');
+			} else if (330 < deg && deg < 360 && 0 <= degs[dragHand - 1] && degs[dragHand - 1] < 30) {
 				clockwise = -1;
 			}
-			console.log(deg, degs[dragHand - 1], ddeg);
 
 			let linkage = handLinkage(ddeg, dragHand, clockwise);
-			hourDeg += linkage[0];
-			minuteDeg += linkage[1];
-			secondDeg += linkage[2];
+
+			for (let i = 0; i < 3; i++) {
+				degs[i] += linkage[i];
+				degs[i] = mod(degs[i], 360);
+			}
+			hourDeg = degs[0];
+			minuteDeg = degs[1];
+			secondDeg = degs[2];
 
 			// 获取dom树节点
 			const hourHand = document.getElementById('hour-hand');
@@ -139,7 +161,6 @@ function setDrag() {
 			secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
 
 			updateVtime();
-			console.log(vtime.getSeconds());
 		}
 	});
 
@@ -148,9 +169,6 @@ function setDrag() {
 		if (dragHand) {
 			dragHand = 0;
 			realTime = false;
-
-			// 更新虚拟时间
-			updateVtime();
 		}
 	});
 }
@@ -172,13 +190,13 @@ function handLinkage(ddeg, dragHand, clockwise) {
 	ddeg += 360 * clockwise;
 	switch (dragHand) {
 		case 1:
-			res = [ddeg - 360 * clockwise, ddeg * 60, ddeg * 60 * 60];
+			res = [ddeg - 360 * clockwise, mod(ddeg * 12, 360), mod(ddeg * 12 * 60, 360)];
 			break;
 		case 2:
-			res = [ddeg / 60, ddeg - 360 * clockwise, ddeg * 60];
+			res = [ddeg / 12, ddeg - 360 * clockwise, mod(ddeg * 60, 360)];
 			break;
 		case 3:
-			res = [ddeg / 60 / 60, ddeg / 60, ddeg - 360 * clockwise];
+			res = [ddeg / 12 / 60, ddeg / 60, ddeg - 360 * clockwise];
 			break;
 		default:
 			break;
@@ -188,21 +206,33 @@ function handLinkage(ddeg, dragHand, clockwise) {
 
 // 根据钟表指针更新虚拟时间
 function updateVtime() {
-	let hours = hourDeg / 30 - minuteDeg / 360;
-	let minute = minuteDeg / 6 - secondDeg / 360;
-	let second = Math.floor(secondDeg / 6);
-	let milliseconds = (secondDeg / 6 - second) * 1000;
+	let h1 = vtime.getHours();
 
-	vtime = new vTime(hours, minute, second, milliseconds);
+	let hours = Math.floor(hourDeg / 30);
+	let minute = Math.floor(minuteDeg / 6);
+	let second = Math.floor(secondDeg / 6);
+	let milliseconds = Math.round((secondDeg / 6 - second) * 1000);
+
+	// 边界情况处理
+	if ((h1 == 1 || h1 == 13) && vtime.getMinutes() == 0 && vtime.getSeconds() == 0 && vtime.getMilliseconds() == 0) {
+		h1 -= 1;
+	}
+
+	if ((h1 % 12) + hours == 11 && Math.max(h1 % 12, hours) == 11) {
+		// 更新pm
+		pm = 1 - pm;
+	}
+
+	vtime = new vTime(hours + pm * 12, minute, second, milliseconds);
+	vtime.addMilliseconds(0);
+}
+
+function mod(n, m) {
+	return ((n % m) + m) % m;
 }
 
 //根据选择启用不同功能
 window.onload = function () {
-	var curTime = JSON.parse(localStorage.getItem('now'));
-	if (curTime) {
-		vtime = new vTime(parseInt(curTime[0]), parseInt(curTime[1]), parseInt(curTime[2]), parseInt(curTime[3]));
-		realTime = false;
-	}
 	var clockFunction = document.getElementById('clock-functions');
 	if (clockFunction) {
 		clockFunction.addEventListener('change', (event) => {
@@ -276,30 +306,11 @@ window.onload = function () {
 
 		realTime = false;
 		vtime = new vTime(hours, minutes, seconds, 0);
+
+		// 同时更改pm
+		pm = hours >= 12 ? 1 : 0;
+		//存储当前时间
+		sessionStorage.setItem('now', JSON.stringify([hours, minutes, seconds, 0]));
 	}
 	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
 };
-function setTimeFromInput() {
-	const hours = parseInt(document.getElementById('time-input-hour').value, 10);
-	const minutes = parseInt(document.getElementById('time-input-minute').value, 10);
-	const seconds = parseInt(document.getElementById('time-input-second').value, 10);
-	if (
-		!isNaN(hours) &&
-		hours >= 0 &&
-		hours <= 23 &&
-		!isNaN(minutes) &&
-		minutes >= 0 &&
-		minutes <= 59 &&
-		!isNaN(seconds) &&
-		seconds >= 0 &&
-		seconds <= 59
-	) {
-		realTime = false;
-		vtime = new vTime(hours, minutes, seconds, 0);
-	} else {
-		alert('时间格式有误');
-	}
-}
-if (document.getElementById('time-input-button')) {
-	document.getElementById('time-input-button').addEventListener('click', setTimeFromInput);
-}

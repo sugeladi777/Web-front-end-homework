@@ -2,7 +2,7 @@
 // 与Date()具有一些相同的接口
 window.addEventListener('DOMContentLoaded', () => {
 	// 获取本地时间
-	const curTime = localStorage.getItem('now');
+	const curTime = sessionStorage.getItem('now');
 	var now = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
 	var stopWatchTime = new vTime(0, 0, 0, 0);
 	// 更新钟表
@@ -79,7 +79,6 @@ function updateClock(time) {
 	secondDeg = (360 / 60) * (seconds + milliseconds / 1000);
 
 	//更新时针指针角度
-	hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
-	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
+	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 170)`);
 	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
 }

@@ -4,14 +4,27 @@
 	padding: 0;
 }
 body {
-	min-width: 500px;
-	background-color: black;
+	min-width: 700px;
+	background-color: #f3f4f6;
 	font-family: 'Microsoft YaHei', 'SimHei', 'Apple LiGothic Medium';
 }
+video {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	height: auto;
+	width: auto;
+	z-index: -100;
+	/* 灰色滤镜 */
+	filter: grayscale(100%);
+}
+
 #center {
 	position: relative;
 	top: 100px;
-	width: 500px;
+	width: 700px;
 	height: 100%;
 	margin: auto;
 }
@@ -27,12 +40,12 @@ text {
 
 #time-display{
 	position: absolute;
-	left:150px;
-	top:550px;
-	font-size: 40px;  
-	font-family: Arial, sans-serif;  
+	left: 8px;
+	top: 5px;
+	font-size: 32px;
+	font-family: Arial, sans-serif;
 	color: black;
-	text-anchor: middle; 
+	text-anchor: middle;
 }
 
 #time-display1{
@@ -55,47 +68,91 @@ text {
 	text-anchor: middle; 
 }
 
-#clock-functions{
+.time-number {
+	transition: transform 0.5s ease-in-out;
+}
+
+.time-number.change {
+	transform: scale(1.2);
+}
+
+#clock-functions {
 	position: absolute;
-	left:175px;
-	top:650px;
-	width:150px;
-	height:50px;
+	left: 175px;
+	top: 650px;
+	width: 150px;
+	height: 50px;
 	font-size: 20px;
 }
 
-#time-input-hour{
+#time-input-hour {
 	position: absolute;
-	left:55px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 55px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
 }
 
-#time-input-minute{
+#time-input-minute {
 	position: absolute;
-	left:165px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 165px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
 }
 
-#time-input-second{
+#time-input-second {
 	position: absolute;
-	left:275px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 275px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
 }
 
-#time-input-button{
+#time-input-button {
 	position: absolute;
-	left:385px;
-	top:750px;
-	width:100px;
-	height:50px;
+	left: 385px;
+	top: 750px;
+	width: 100px;
+	height: 50px;
 	font-size: 30px;
+}
+
+.partition {
+	font-size: 50px;
+	font-weight: 900;
+	position: absolute;
+	left: 55px;
+	top: -12px;
+}
+
+#nonBlockingAlert {
+	display: none; /* Hidden by default */
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	padding: 20px;
+	background-color: rgb(65, 66, 67);
+	font-size: 20px;
+	color: white;
+	z-index: 100;
+	width: 150px;
+	height: 80px;
+}
+
+#close {
+	display: block;
+	position: absolute;
+	bottom: 10px;
+	font-size: 20px;
+	width: 60px;
+	height: 40px;
+	background-color: rgb(197, 99, 99);
 }
