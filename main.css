@@ -10,7 +10,7 @@ body {
 
 	min-height: 500px;
 }
-button{
+button {
 	cursor: pointer;
 }
 video {
@@ -168,12 +168,12 @@ text {
 	-webkit-transition-duration: 0.4s;
 	transition-duration: 0.4s;
 	cursor: pointer;
-  }
-  .function-button:hover {
+}
+.function-button:hover {
 	background-color: #fff;
 	color: #1795bb;
 	border: 1px solid #ccc;
-  }
+}
 
 #overlay {
 	position: fixed;
@@ -236,4 +236,80 @@ text {
 	background-color: rgb(197, 99, 99);
 }
 
+.decoration-circle,
+.decoration-circle::after,
+.decoration-circle::before {
+	border: 2px solid white;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-radius: 50%;
+}
+.decoration-circle {
+	position: absolute;
+	transform-origin: 50% 50%;
+}
+#circle1{
+	left: 5px;
+	top: 5px;
+	width: 500px;
+	height: 500px;
+	border-left: 2px solid blue;
+	border-right: 2px solid blue;
+	animation: turn 3600s linear infinite;
+}
+#circle2{
+	left: 15px;
+	top: 15px;
+	width: 480px;
+	height: 480px;
+	border-left: 2px solid green;
+	border-right: 2px solid green;
+	animation: turn 60s linear infinite;
+}
+#circle3{
+	left: 25px;
+	top: 25px;
+	width: 460px;
+	height: 460px;
+	border-left: 2px solid red;
+	border-right: 2px solid red;
+	animation: turn 1s linear infinite;
+}
+@keyframes turn {
+	100% {
+		transform: rotateZ(-1turn);
+	}
+}
+.decoration-circle2{
+	border: 2px solid rgba(0, 0, 0, 1);
+	opacity: .9;
+	border-radius: 50%;
+	position: absolute;
+	left: 257px;
+	top: 257px;
+	transform-origin: 50% 50%;
+	transform: translate(-50%, -50%);
+	width: 20px;
+	height: 20px;
+	animation: rotate 3s linear infinite;
+}
+#circle4 {
+    animation-delay: 0s;
+}
 
+#circle5 {
+    animation-delay: 1s;
+}
+
+#circle6 {
+    animation-delay: 2s;
+}
+
+@keyframes rotate {
+ 100% {
+     border: none;
+     border-top: 2px solid rgba(0, 0, 0, 1);
+     border-bottom: 2px solid rgba(0, 0, 0, 1);
+     transform: translate(-50%, -50%) rotate3d(.5, 0.5, 0.5, -720deg);
+ }
+}
