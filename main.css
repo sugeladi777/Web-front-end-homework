@@ -135,6 +135,7 @@ text {
 	justify-items: center;
 	align-items: center;
 	position: fixed;
+	overflow: auto;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -146,11 +147,15 @@ text {
 	width: 150px;
 	height: 80px;
 }
-
+#alert-text {
+	text-wrap: nowrap;
+	position: absolute;
+	top: 20px;
+}
 #close {
-	display: block;
 	position: absolute;
 	bottom: 10px;
+	display: block;
 	font-size: 20px;
 	width: 60px;
 	height: 40px;
