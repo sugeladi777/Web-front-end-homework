@@ -28,7 +28,7 @@ class vTime {
 			this.hours = 0;
 		}
 		if (this.hours == 0 && this.minutes == 0 && this.seconds == 0 && this.milliseconds == 0 && timeChange) {
-			alert('计时结束');
+			showNonBlockingAlert('计时结束');
 			localStorage.removeItem('pauseTime');
 		}
 	}
@@ -85,6 +85,18 @@ if (curTime) {
 curTime = JSON.parse(localStorage.getItem('timerTime'));
 if (curTime) var timerTime = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
 
+function showNonBlockingAlert(message) {
+	var alertBox = document.getElementById('nonBlockingAlert');
+	alertBox.style.display = 'flex';
+	var alertText = document.getElementById('alert-text');
+	alertText.innerHTML = message;
+
+	// 点击关闭按钮关闭
+	document.getElementById('close').addEventListener('click', function () {
+		alertBox.style.display = 'none';
+	});
+}
+
 function checkAlarm() {
 	alarms = JSON.parse(localStorage.getItem('alarmClocks'));
 
@@ -95,17 +107,14 @@ function checkAlarm() {
 
 	if (alarms) {
 		alarms.forEach(function (alarm) {
-			var a = parseInt(alarm.hour);
-			var b = parseInt(alarm.minute);
-			var c = now.getSeconds().toFixed(0);
-			var d = now.getMilliseconds().toFixed(0);
 			if (
+				now &&
 				parseInt(alarm.hour) == now.getHours() &&
 				parseInt(alarm.minute) == now.getMinutes() &&
 				now.getSeconds().toFixed(0) == 0 &&
 				now.getMilliseconds().toFixed(0) == 0
 			) {
-				alert('闹钟响了:' + alarm.name);
+				showNonBlockingAlert('闹钟响了:' + alarm.name);
 			}
 		});
 	}
@@ -113,7 +122,7 @@ function checkAlarm() {
 
 function manageTime() {
 	//不在主页面时，帮其时间增长;不在计时器页面时，帮其时间减少
-	if (location.href.slice(-9) != 'main.html') {
+	if (location.href.slice(-9) != 'main.html' && now) {
 		now.addMilliseconds(10);
 		sessionStorage.setItem('now', JSON.stringify([now.getHours(), now.getMinutes(), now.getSeconds(), now.getMilliseconds()]));
 	}

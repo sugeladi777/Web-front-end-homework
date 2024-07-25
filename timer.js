@@ -1,5 +1,17 @@
 let update;
 
+function showNonBlockingAlert(message) {
+	var alertBox = document.getElementById('nonBlockingAlert');
+	alertBox.style.display = 'flex';
+	var alertText = document.getElementById('alert-text');
+	alertText.innerHTML = message;
+
+	// 点击关闭按钮关闭
+	document.getElementById('close').addEventListener('click', function () {
+		alertBox.style.display = 'none';
+	});
+}
+
 function handleStart() {
 	const start = document.getElementById('start-button');
 
@@ -14,7 +26,7 @@ function handleStart() {
 	let millisecond = 0;
 
 	if (hour <= 0 && minute <= 0 && second <= 0) {
-		alert('请输入大于零的正确时间');
+		showNonBlockingAlert('请输入大于零的正确时间');
 		return;
 	}
 
@@ -80,7 +92,14 @@ function handleReset() {
 	localStorage.removeItem('timerTime');
 	localStorage.removeItem('pauseTime');
 	localStorage.removeItem('sumTime');
-	location.reload();
+
+	// 重置时间
+	var time = new vTime(0, 0, 0, 0);
+	document.getElementById('hour').value = time.getHours();
+	document.getElementById('minute').value = time.getMinutes();
+	document.getElementById('second').value = time.getSeconds();
+	const secondHand = document.getElementById('second-hand');
+	secondHand.setAttribute('transform', `rotate(${0}, 250, 250)`);
 }
 
 // 定义虚拟时间
@@ -150,8 +169,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		if (e.target.value < 0) {
 			e.target.value = 0;
 		}
-
-		// TODO: 点击跳转网页
 	});
 });
 
