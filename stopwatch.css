@@ -3,7 +3,11 @@ button {
 	height: 45px;
 	background-color: rgb(105, 206, 104);
 	font-size: 20px;
+	font-weight: bold;
 	color: white;
+
+	border-radius: 5px;
+	border-style: solid;
 }
 
 #center {
@@ -19,8 +23,8 @@ button {
 #back {
 	width: 100px;
 	position: absolute;
-	left: 60px;
-	top: 30px;
+	left: 75px;
+	top: 50px;
 }
 
 #start-button {
