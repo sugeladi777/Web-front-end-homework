@@ -1,5 +1,5 @@
 body {
-	display: flex;
+	/* display: flex; */
 	flex-direction: column;
 	text-align: center;
 	justify-content: center;
@@ -27,7 +27,7 @@ button {
 	-webkit-transition-duration: 0.4s;
 	transition-duration: 0.4s;
 }
-#add-button:hover{
+#add-button:hover {
 	background-color: #fff;
 	color: rgb(105, 206, 104);
 	border: 1px solid #ccc;
@@ -48,8 +48,8 @@ input {
 	justify-content: center;
 	align-items: center;
 	height: 200px;
-	width: 80vw;
-	margin-top: 20px;
+	width: 100%;
+	margin-bottom: 20px;
 	background-color: rgb(17, 17, 17, 0.3);
 	border-radius: 10px;
 	font-size: 60px;
@@ -71,7 +71,7 @@ input {
 	-webkit-transition-duration: 0.4s;
 	transition-duration: 0.4s;
 }
-.delete-button:hover{
+.delete-button:hover {
 	background-color: #fff;
 	color: rgb(241, 121, 121);
 	border: 1px solid #ccc;
@@ -90,7 +90,6 @@ input {
 	right: 0px;
 }
 
-
 #name {
 	width: 100px;
 }
@@ -104,8 +103,16 @@ input {
 	font-size: 20px;
 }
 
-#alarm-list{
+#aside {
+	margin-right: 0%;
+}
+
+#alarm-list {
+	display: flex;
+	flex-direction: column;
+
+	width: calc(100vw - 250px);
+
 	position: absolute;
-	right: 0px;
-	top: 0px;
+	left: 250px;
 }
