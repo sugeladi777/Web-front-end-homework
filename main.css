@@ -145,14 +145,35 @@ text {
 
 	float: left;
 	margin-top: 35px;
-	border-radius: 5px;
+	/* border-radius: 5px; */
 	border-style: solid;
-	background-color: rgb(105, 206, 104);
-	color: white;
+	/* background-color: rgb(105, 206, 104); */
+	/* color: white; */
 
 	font-size: 20px;
 	font-weight: bold;
 }
+
+.function-button {
+	background-color: #1795bb;
+	border-radius: 12px;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+	cursor: pointer;
+  }
+  .function-button:hover {
+	background-color: #fff;
+	color: #1795bb;
+	border: 1px solid #ccc;
+  }
 
 #overlay {
 	position: fixed;
@@ -214,3 +235,5 @@ text {
 	height: 40px;
 	background-color: rgb(197, 99, 99);
 }
+
+
