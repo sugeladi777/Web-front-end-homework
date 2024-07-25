@@ -12,7 +12,9 @@ button {
 
 #center {
 	text-align: center;
-	top: -10px;
+	top: 0px;
+
+	right: 25%;
 }
 
 #time {

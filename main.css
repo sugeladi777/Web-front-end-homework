@@ -24,11 +24,11 @@ video {
 }
 
 #center {
-	position: relative;
+	position: absolute;
 	top: 100px;
+	right: 15%;
 	width: 700px;
 	height: 100%;
-	margin: auto;
 
 	float: left;
 }
@@ -122,10 +122,11 @@ text {
 }
 
 #aside {
-	position: relative;
+	position: fixed;
 
 	top: 0px;
 	left: 0px;
+
 	width: 250px;
 
 	margin-right: 20%;
@@ -134,9 +135,6 @@ text {
 	min-height: 500px;
 
 	background-color: rgba(255, 255, 255, 0.5);
-
-	/* padding-top: 100px;
-	padding-bottom: 100px; */
 
 	height: 100vh;
 }
