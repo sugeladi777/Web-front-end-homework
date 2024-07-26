@@ -1,9 +1,23 @@
-button {
+#start-button,#reset-button{
 	width: 120px;
 	height: 45px;
-	background-color: rgb(105, 206, 104);
+	background-image: linear-gradient(to right, rgb(105, 206, 104), rgb(174, 212, 173));
+	/* background-color: rgb(174, 212, 173); */
 	font-size: 20px;
+	font-weight: bold;
 	color: white;
+	margin: 4px 2px;
+
+	border-radius: 10px;
+	border-style: solid;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); 
+}
+
+#start-button,#reset-button{
+	background-image: linear-gradient(to right, rgb(255, 255, 255), rgbrgb(255, 255, 255));
+	color: rgb(105, 206, 104);
+	border: 1px solid #ccc;
+	cursor: pointer;
 }
 
 #center {
@@ -16,11 +30,21 @@ button {
 	color: white;
 }
 
-#back {
+.back {
+	border-style: solid;
+	color: white;
+	
+	
 	width: 100px;
 	position: absolute;
 	left: 60px;
 	top: 30px;
+	padding: 5px;
+	font-size: 20px;
+}
+.back:hover{
+	color: #1795bb;
+
 }
 
 #start-button {

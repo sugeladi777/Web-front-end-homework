@@ -12,8 +12,9 @@
 
 	<body>
 		<video src="./mp4/background.mp4" autoplay loop muted></video>
+		<div id="aside"></div>
 		<div id="nonBlockingAlert"><span id="alert-text">this is a non-blocking alert!</span> <button id="close">关闭</button></div>
-		<button id="back">返回</button>
+		<button class="function-button back" id="back">返回</button>
 		<div id="center">
 			<!-- 时钟模型 -->
 			<svg id="clock" width="500" height="500">
@@ -158,8 +159,8 @@
 				</g>
 			</svg>
 			<div id="time">00:00.00</div>
-			<button id="start-button">开始</button>
-			<button id="reset-button">归零</button>
+			<button id="start-button" >开始</button>
+			<button id="reset-button" >归零</button>
 		</div>
 	</body>
 </html>

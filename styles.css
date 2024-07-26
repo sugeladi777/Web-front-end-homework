@@ -1,0 +1,40 @@
+.alarm-button {  
+    position: relative;  
+    width: 100px; /* 可以调整大小 */  
+    height: 100px; /* 可以调整大小 */  
+    border: none;  
+    background-color: #f0ad4e; /* 初始背景色 */  
+    border-radius: 50%; /* 圆形按钮 */  
+    cursor: pointer;  
+    overflow: hidden; /* 隐藏超出按钮边界的部分 */  
+    transition: background-color 0.3s; /* 平滑过渡效果 */  
+  }  
+    
+  .alarm-button:hover {  
+    background-color: #d58512; /* 鼠标悬停时的背景色 */  
+  }  
+    
+  .clock-face {  
+    position: absolute;  
+    top: 50%;  
+    left: 50%;  
+    transform: translate(-50%, -50%);  
+    width: 60%;  
+    height: 60%;  
+    border: 5px solid #333; /* 时钟的边框 */  
+    border-radius: 50%;  
+    background-color: white; /* 时钟的背景色 */  
+  }  
+    
+  .hand {  
+    position: absolute;  
+    bottom: 50%;  
+    left: 50%;  
+    width: 2px;  
+    height: 30%;  
+    background-color: black; /* 时针的颜色 */  
+    transform-origin: 50% 100%; /* 旋转中心点 */  
+    transform: rotate(60deg); /* 初始角度，可以根据需要调整 */  
+  }  
+    
+  /* 可以在这里添加更多的样式细节，如时钟的数字、秒针等 */

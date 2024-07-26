@@ -14,6 +14,15 @@
 		<video src="./mp4/background.mp4" autoplay loop muted></video>
 		<div id="nonBlockingAlert"><span id="alert-text">this is a non-blocking alert!</span> <button id="close">关闭</button></div>
 
+		<div id="aside">
+			<div id="clock-functions">
+				<!-- <button value="" disabled selected>选择功能</button> -->
+				<button class="function-button" value="setTime" id="setTime">设置时间</button>
+				<button class="function-button" value="stopwatch" id="stopwatch">秒表</button>
+				<button class="function-button" value="alarm" id="alarm">闹钟</button>
+				<button class="function-button" value="timer" id="timer">计时</button>
+			</div>
+		</div>
 		<div id="center">
 			<svg id="clock" width="600" height="600" viewBox="-50 -50 700 700">
 				<!-- 时钟表盘 -->
@@ -121,18 +130,22 @@
 				<!-- <text id="time-display">00 : 00 : 00</text> -->
 			</div>
 			<!-- 功能选择 -->
-			<select id="clock-functions">
+			<!-- <select id="clock-functions">
 				<option value="" disabled selected>选择功能</option>
 				<option value="setTime">设置时间</option>
 				<option value="stopwatch">秒表</option>
 				<option value="alarm">闹钟</option>
 				<option value="timer">计时</option>
-			</select>
+			</select> -->
 			<!-- 时间设置 -->
-			<input type="number" id="time-input-hour" min="0" max="23" disabled style="display: none" />
-			<input type="number" id="time-input-minute" min="0" max="59" disabled style="display: none" />
-			<input type="number" id="time-input-second" min="0" max="59" disabled style="display: none" />
-			<button id="time-input-button" style="display: none">确认</button>
+		</div>
+		<div id="overlay"></div>
+
+		<div id="popup">
+			<input  class="input-number" type="number" id="time-input-hour" min="0" max="23" />
+			<input type="number" id="time-input-minute" min="0" max="59" />
+			<input type="number" id="time-input-second" min="0" max="59" />
+			<button class="function-button" id="time-input-button">确认</button>
 		</div>
 	</body>
 </html>
