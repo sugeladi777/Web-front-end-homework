@@ -247,6 +247,7 @@ text {
 .decoration-circle {
 	position: absolute;
 	transform-origin: 50% 50%;
+	pointer-events: none;
 }
 #circle1{
 	left: 5px;
