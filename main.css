@@ -23,7 +23,7 @@ video {
 	width: auto;
 	z-index: -100;
 	/* 灰色滤镜 */
-	filter: grayscale(100%);
+	/* filter: grayscale(100%); */
 }
 
 #center {
