@@ -1,5 +1,5 @@
 body {
-	display: flex;
+	/* display: flex; */
 	flex-direction: column;
 	text-align: center;
 	justify-content: center;
@@ -27,7 +27,7 @@ button {
 	-webkit-transition-duration: 0.4s;
 	transition-duration: 0.4s;
 }
-#add-button:hover{
+#add-button:hover {
 	background-color: #fff;
 	color: rgb(105, 206, 104);
 	border: 1px solid #ccc;
@@ -49,8 +49,8 @@ input {
 	justify-content: center;
 	align-items: center;
 	height: 200px;
-	width: 80vw;
-	margin-top: 20px;
+	width: 100%;
+	margin-bottom: 20px;
 	background-color: rgb(17, 17, 17, 0.3);
 	border-radius: 10px;
 	font-size: 60px;
@@ -72,7 +72,7 @@ input {
 	-webkit-transition-duration: 0.4s;
 	transition-duration: 0.4s;
 }
-.delete-button:hover{
+.delete-button:hover {
 	background-color: #fff;
 	color: rgb(241, 121, 121);
 	border: 1px solid #ccc;
@@ -87,10 +87,9 @@ input {
 	width: 530px;
 	height: 80px;
 	border-radius: 10px;
-	bottom: 20px;
+	bottom: -300px;
 	right: 0px;
 }
-
 
 #name {
 	width: 100px;
@@ -99,22 +98,29 @@ input {
 #back {
 	border-style: solid;
 	color: white;
-	
-	
 	width: 100px;
 	position: absolute;
 	left: 60px;
 	top: 30px;
 	padding: 5px;
 	font-size: 20px;
+	cursor: pointer;
 }
 #back:hover{
-	color: #1795bb;
+	color: rgb(246, 178, 27);
 
 }
 
-#alarm-list{
+#aside {
+	margin-right: 0%;
+}
+
+#alarm-list {
+	display: flex;
+	flex-direction: column;
+
+	width: calc(100vw - 250px);
+
 	position: absolute;
-	right: 0px;
-	top: 0px;
+	left: 250px;
 }

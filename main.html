@@ -17,6 +17,7 @@
 		<div id="aside">
 			<div id="clock-functions">
 				<!-- <button value="" disabled selected>选择功能</button> -->
+				<button class="function-button" value="nowTime" id="nowTime">当前时间</button>
 				<button class="function-button" value="setTime" id="setTime">设置时间</button>
 				<button class="function-button" value="stopwatch" id="stopwatch">秒表</button>
 				<button class="function-button" value="alarm" id="alarm">闹钟</button>
@@ -24,6 +25,9 @@
 			</div>
 		</div>
 		<div id="center">
+			<div class="decoration-circle" id="circle1"></div>
+			<div class="decoration-circle" id="circle2"></div>
+			<div class="decoration-circle" id="circle3"></div>
 			<svg id="clock" width="600" height="600" viewBox="-50 -50 700 700">
 				<!-- 时钟表盘 -->
 				<circle id="clock_dial" cx="250" cy="250" r="300" fill="#f6f7fb"></circle>
@@ -100,18 +104,22 @@
 				<!-- 钟表指针 -->
 				<g id="clock_hand">
 					<g id="hour-hand">
-						<line x1="250" y1="250" x2="250" y2="100" stroke="#2c2d2f" stroke-width="8" />
+						<line x1="250" y1="235" x2="250" y2="100" stroke="#2c2d2f" stroke-width="8" />
 						<circle cx="250" cy="150" r="12" stroke="#2c2d2f" stroke-width="2" id="hour-hand-drag"></circle>
 					</g>
 					<g id="minute-hand">
-						<line x1="250" y1="250" x2="250" y2="50" stroke="#58595e" stroke-width="5" />
+						<line x1="250" y1="235" x2="250" y2="50" stroke="#58595e" stroke-width="5" />
 						<circle cx="250" cy="100" r="10" fill="#58595e" stroke-width="5" id="minute-hand-drag"></circle>
 					</g>
 					<g id="second-hand">
-						<line x1="250" y1="250" x2="250" y2="0" stroke="#db7150" stroke-width="3" id="second-hand" />
+						<line x1="250" y1="235" x2="250" y2="0" stroke="#db7150" stroke-width="3" id="second-hand" />
 						<circle cx="250" cy="50" r="8" fill="#db7150" stroke-width="5" id="second-hand-drag"></circle>
 					</g>
-					<circle cx="250" cy="250" r="5" fill=""></circle>
+					<div class="decoration-circle2" id="circle4"></div>
+					<div class="decoration-circle2" id="circle5"></div>
+					<div class="decoration-circle2" id="circle6"></div>
+					<div id="circle7"></div>
+					<!-- <circle cx="250" cy="250" r="5" fill="black"></circle> -->
 				</g>
 			</svg>
 			<!-- 数字显示 -->
@@ -129,15 +137,6 @@
 				</div>
 				<!-- <text id="time-display">00 : 00 : 00</text> -->
 			</div>
-			<!-- 功能选择 -->
-			<!-- <select id="clock-functions">
-				<option value="" disabled selected>选择功能</option>
-				<option value="setTime">设置时间</option>
-				<option value="stopwatch">秒表</option>
-				<option value="alarm">闹钟</option>
-				<option value="timer">计时</option>
-			</select> -->
-			<!-- 时间设置 -->
 		</div>
 		<div id="overlay"></div>
 

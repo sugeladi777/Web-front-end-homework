@@ -74,7 +74,7 @@ function handlePause() {
 		);
 	}
 
-	start.textContent = '开始计时';
+	start.textContent = '开始';
 	localStorage.removeItem('timerTime');
 
 	clearInterval(update);
