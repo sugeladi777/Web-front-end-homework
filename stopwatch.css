@@ -1,13 +1,28 @@
-button {
+#start-button,#reset-button{
 	width: 120px;
-	height: 45px;
-	background-color: rgb(105, 206, 104);
-	font-size: 20px;
-	font-weight: bold;
+	/* border-style: solid; */
 	color: white;
+	height: 55px;
+	background-image: linear-gradient(to right, rgb(115, 220, 113), rgb(115, 220, 113));
+	margin-left: 10px;
+	text-shadow: none;
+	border-radius: 10px;
+}
 
-	border-radius: 5px;
-	border-style: solid;
+#start-button:hover,#reset-button:hover{
+	background-image: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));
+	color: rgb(105, 206, 104);
+	border: 1px solid #ccc;
+	cursor: pointer;
+	transform: scale(1.0);
+}
+
+#reset-button{
+	background-image: linear-gradient(to right, rgb(241, 121, 121), rgb(241, 121, 121));
+}
+
+#reset-button:hover{
+	color: rgb(241, 121, 121);
 }
 
 #center {
@@ -22,47 +37,22 @@ button {
 	color: white;
 }
 
-#back {
+.back {
+	border-style: solid;
+	color: white;
+	
+	
 	width: 100px;
 	position: absolute;
 	left: 60px;
 	top: 30px;
-	padding: 0;
+	padding: 5px;
 	font-size: 20px;
-	cursor: pointer;
 }
+.back:hover{
+	color: rgb(246, 178, 27);
 
-#start-button {
-	width: 120px;
-	height: 45px;
-	background-color: rgb(105, 206, 104);
-	font-size: 20px;
-	color: white;
-	-webkit-transition-duration: 0.4s;
-	transition-duration: 0.4s;
 }
-
-#start-button:hover {
-	background-color: #fff;
-	color: rgb(105, 206, 104);
-	border: 1px solid #ccc;
-  }
-
-#reset-button {
-	width: 120px;
-	height: 45px;
-	background-color: rgb(241, 121, 121);
-	font-size: 20px;
-	color: white;
-	margin-left: 10px;
-	-webkit-transition-duration: 0.4s;
-	transition-duration: 0.4s;
-}
-#reset-button:hover {
-	background-color: #fff;
-	color: rgb(241, 121, 121);
-	border: 1px solid #ccc;
-  }
 
 #clock {
 	scale: 80%;

@@ -31,6 +31,7 @@ button {
 	background-color: #fff;
 	color: rgb(105, 206, 104);
 	border: 1px solid #ccc;
+	cursor: pointer;
 }
 input {
 	background-color: rgb(141, 138, 138);
@@ -95,13 +96,19 @@ input {
 }
 
 #back {
+	border-style: solid;
+	color: white;
 	width: 100px;
 	position: absolute;
 	left: 60px;
 	top: 30px;
-	padding: 0;
+	padding: 5px;
 	font-size: 20px;
 	cursor: pointer;
+}
+#back:hover{
+	color: rgb(246, 178, 27);
+
 }
 
 #aside {

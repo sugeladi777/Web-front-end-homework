@@ -4,9 +4,9 @@ input {
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 10px;
-	background-color: rgb(59, 57, 57);
+	background-color: rgb(255, 255, 255);
 	border-radius: 5px;
-	color: white;
+	color: black;
 	text-align: center;
 }
 
@@ -31,4 +31,3 @@ input {
 	font-size: 20px;
 	cursor: pointer;
 }
-#start-button
