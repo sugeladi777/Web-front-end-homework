@@ -112,7 +112,7 @@ function checkAlarm() {
 				parseInt(alarm.hour) == now.getHours() &&
 				parseInt(alarm.minute) == now.getMinutes() &&
 				now.getSeconds().toFixed(0) == 0 &&
-				now.getMilliseconds().toFixed(0) == 0
+				now.getMilliseconds().toFixed(0) <= 9
 			) {
 				showNonBlockingAlert('闹钟响了:' + alarm.name);
 			}
