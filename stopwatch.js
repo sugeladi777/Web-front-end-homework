@@ -2,11 +2,13 @@ var update; //更新时间函数对应的定时器ID
 function handleStart() {
 	const start = document.getElementById('start-button');
 	stopWatchTime = JSON.parse(sessionStorage.getItem('stopWatchTime'));
+	if (!stopWatchTime) stopWatchTime = [0, 0, 0, 0];
 	var vtime = new vTime(stopWatchTime[0], stopWatchTime[1], stopWatchTime[2], stopWatchTime[3]);
 	update = setInterval(updateClock, interval, vtime);
 	start.textContent = '暂停';
 	start.removeEventListener('click', handleStart); // 移除事件监听器
 	start.addEventListener('click', handlePause); // 添加事件监听器
+	sessionStorage.setItem('stopWatch_pause', 'false'); //暂停标志
 }
 function handlePause() {
 	const start = document.getElementById('start-button');
@@ -14,14 +16,50 @@ function handlePause() {
 	clearInterval(update);
 	start.removeEventListener('click', handlePause); // 移除事件监听器
 	start.addEventListener('click', handleStart); // 添加事件监听器
+	sessionStorage.setItem('stopWatch_pause', 'true'); //暂停标志
+}
+function setHand(time) {
+	// 获取当前时间
+	const now = time;
+	const hours = now.getHours() % 12;
+	const minutes = now.getMinutes();
+	const seconds = parseFloat(now.getSeconds());
+	const milliseconds = parseFloat(now.getMilliseconds());
+
+	//更新数字显示
+	const timeNum = document.getElementById('time');
+	timeNum.textContent = `${formatTime(minutes)}:${formatTime(seconds.toFixed(0))}.${formatTime(milliseconds.toFixed(0) / 10)}`;
+	sessionStorage.setItem('stopWatchTime', JSON.stringify([hours, minutes, seconds, milliseconds]));
+	// 获取dom树节点
+	const minuteHand = document.getElementById('minute-hand');
+	const secondHand = document.getElementById('second-hand');
+
+	// 获取时钟指针角度
+	minuteDeg = (360 / 60) * (minutes + seconds / 60 + milliseconds / 60000);
+	secondDeg = (360 / 60) * (seconds + milliseconds / 1000);
+
+	//更新时针指针角度
+	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 170)`);
+	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-	var stopWatchTime = [0, 0, 0, 0];
-	sessionStorage.setItem('stopWatchTime', JSON.stringify(stopWatchTime));
+	// var stopWatchTime = [0, 0, 0, 0];
+	// sessionStorage.setItem('stopWatchTime', JSON.stringify(stopWatchTime));
+	var stopWatchTime = JSON.parse(sessionStorage.getItem('stopWatchTime'));
 
 	// 点击开始按钮更新钟表
 	const start = document.getElementById('start-button');
+	if (!stopWatchTime) {
+		stopWatchTime = [0, 0, 0, 0];
+		sessionStorage.setItem('stopWatchTime', JSON.stringify(stopWatchTime));
+	} else if (sessionStorage.getItem('stopWatch_pause') == 'true') {
+		handlePause();
+	} else if (stopWatchTime && sessionStorage.getItem('stopWatch_pause') == 'false') {
+		handleStart();
+	}
+	stopWatchTime = new vTime(stopWatchTime[0], stopWatchTime[1], stopWatchTime[2], stopWatchTime[3]);
+	setHand(stopWatchTime);
 	start.addEventListener('click', handleStart);
 	// 为返回按钮添加点击事件
 	document.getElementById('back').addEventListener('click', function () {
@@ -31,7 +69,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	const reset = document.getElementById('reset-button');
 	reset.addEventListener('click', function handleReset() {
 		handlePause();
-		sessionStorage.setItem('stopWatchTime', JSON.stringify([0, 0, 0, 0]));
+		// sessionStorage.setItem('stopWatchTime', JSON.stringify([0, 0, 0, 0]));
+		sessionStorage.removeItem('stopWatchTime');
 		const minuteHand = document.getElementById('minute-hand');
 		const secondHand = document.getElementById('second-hand');
 		minuteHand.setAttribute('transform', `rotate(${0}, 250, 170)`);
@@ -66,28 +105,5 @@ function updateClock(time) {
 	// 更新虚拟时间
 
 	time.addMilliseconds(interval);
-
-	// 获取当前时间
-	const now = time;
-	const hours = now.getHours() % 12;
-	const minutes = now.getMinutes();
-	const seconds = parseFloat(now.getSeconds());
-	const milliseconds = parseFloat(now.getMilliseconds());
-
-	//更新数字显示
-	const timeNum = document.getElementById('time');
-	timeNum.textContent = `${formatTime(minutes)}:${formatTime(seconds.toFixed(0))}.${formatTime(milliseconds.toFixed(0) / 10)}`;
-	sessionStorage.setItem('stopWatchTime', JSON.stringify([hours, minutes, seconds, milliseconds]));
-	// 获取dom树节点
-	const minuteHand = document.getElementById('minute-hand');
-	const secondHand = document.getElementById('second-hand');
-
-	// 获取时钟指针角度
-	hourDeg = (360 / 12) * (hours + minutes / 60 + seconds / 3600 + milliseconds / 3600000);
-	minuteDeg = (360 / 60) * (minutes + seconds / 60 + milliseconds / 60000);
-	secondDeg = (360 / 60) * (seconds + milliseconds / 1000);
-
-	//更新时针指针角度
-	minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 170)`);
-	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
+	setHand(time);
 }
