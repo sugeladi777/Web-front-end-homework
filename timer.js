@@ -8,6 +8,8 @@ function showNonBlockingAlert(message) {
 
 	// 点击关闭按钮关闭
 	document.getElementById('close').addEventListener('click', function () {
+		var audio = document.getElementsByTagName('audio')[0];
+		if (audio) audio.remove();
 		alertBox.style.display = 'none';
 	});
 }
@@ -26,7 +28,7 @@ function handleStart() {
 	let millisecond = 0;
 
 	if (hour <= 0 && minute <= 0 && second <= 0) {
-		showNonBlockingAlert('请输入大于零的正确时间');
+		showNonBlockingAlert('请输入时间');
 		return;
 	}
 

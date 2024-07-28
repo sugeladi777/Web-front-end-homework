@@ -28,6 +28,14 @@ class vTime {
 			this.hours = 0;
 		}
 		if (this.hours == 0 && this.minutes == 0 && this.seconds == 0 && this.milliseconds == 0 && timeChange) {
+			// 动态创建音频元素
+			var audio = document.createElement('audio');
+			audio.src = './mp4/alarm.wav'; // 替换为你的音频文件路径
+			audio.controls = false; // 显示播放控件
+			audio.autoplay = false; // 设置为 true 可以自动播放，但可能因浏览器设置而不工作
+			// 将音频元素添加到文档中
+			document.body.appendChild(audio);
+			audio.play();
 			showNonBlockingAlert('计时结束');
 			localStorage.removeItem('pauseTime');
 		}
@@ -97,6 +105,8 @@ function showNonBlockingAlert(message) {
 
 	// 点击关闭按钮关闭
 	document.getElementById('close').addEventListener('click', function () {
+		var audio = document.getElementsByTagName('audio')[0];
+		if (audio) audio.remove();
 		alertBox.style.display = 'none';
 	});
 }
@@ -118,6 +128,14 @@ function checkAlarm() {
 				now.getSeconds().toFixed(0) == 0 &&
 				now.getMilliseconds().toFixed(0) <= 9
 			) {
+				// 动态创建音频元素
+				var audio = document.createElement('audio');
+				audio.src = './mp4/alarm.wav'; // 替换为你的音频文件路径
+				audio.controls = false; // 显示播放控件
+				audio.autoplay = false; // 设置为 true 可以自动播放，但可能因浏览器设置而不工作
+				// 将音频元素添加到文档中
+				document.body.appendChild(audio);
+				audio.play();
 				showNonBlockingAlert('闹钟响了:' + alarm.name);
 			}
 		});

@@ -7,16 +7,16 @@ function addAlarm(h, m, n) {
 	alarms.push(new_alarm);
 	// 按小时和分钟对闹钟数组进行排序
 	alarms.sort(function (a, b) {
-		if (parseInt(a.hour) > parseInt(b.hour)) {
+		if (parseInt(a.hour, 10) > parseInt(b.hour, 10)) {
 			return 1;
 		}
-		if (parseInt(a.hour) < parseInt(b.hour)) {
+		if (parseInt(a.hour, 10) < parseInt(b.hour, 10)) {
 			return -1;
 		}
-		if (parseInt(a.minute) > parseInt(b.minute)) {
+		if (parseInt(a.minute, 10) > parseInt(b.minute, 10)) {
 			return 1;
 		}
-		if (parseInt(a.minute) < parseInt(b.minute)) {
+		if (parseInt(a.minute, 10) < parseInt(b.minute, 10)) {
 			return -1;
 		}
 
@@ -72,8 +72,8 @@ function displayAlarms() {
 window.onload = function () {
 	// 为添加闹钟按钮添加点击事件
 	document.getElementById('add-button').addEventListener('click', function () {
-		let hour = document.getElementById('hour').value;
-		let minute = document.getElementById('minute').value;
+		let hour = parseInt(document.getElementById('hour').value, 10);
+		let minute = parseInt(document.getElementById('minute').value, 10);
 		let name = document.getElementById('name').value;
 		//检查输入的时间是否已有闹钟
 		alarms = JSON.parse(localStorage.getItem('alarmClocks'));
