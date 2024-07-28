@@ -83,12 +83,12 @@ window.onload = function () {
 				return alarm.hour == hour && alarm.minute == minute;
 			})
 		) {
-			alert('该时间已有闹钟');
+			showNonBlockingAlert('该时间已有闹钟');
 			return;
 		}
 		// 检查输入是否为空
 		if (!hour || !minute || !name) {
-			alert('请输入时间和闹钟名称');
+			showNonBlockingAlert('请输入时间和闹钟名称');
 			return;
 		}
 		addAlarm(hour, minute, name);

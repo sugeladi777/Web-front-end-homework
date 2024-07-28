@@ -84,6 +84,10 @@ if (curTime) {
 //获取计时器时间
 curTime = JSON.parse(localStorage.getItem('timerTime'));
 if (curTime) var timerTime = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
+//获取秒表时间
+curTime = JSON.parse(sessionStorage.getItem('stopWatchTime'));
+if (curTime) var stopWatchTime = new vTime(curTime[0], curTime[1], curTime[2], curTime[3]);
+var stopWatch_pause = sessionStorage.getItem('stopWatch_pause');
 
 function showNonBlockingAlert(message) {
 	var alertBox = document.getElementById('nonBlockingAlert');
@@ -112,7 +116,7 @@ function checkAlarm() {
 				parseInt(alarm.hour) == now.getHours() &&
 				parseInt(alarm.minute) == now.getMinutes() &&
 				now.getSeconds().toFixed(0) == 0 &&
-				now.getMilliseconds().toFixed(0) == 0
+				now.getMilliseconds().toFixed(0) <= 9
 			) {
 				showNonBlockingAlert('闹钟响了:' + alarm.name);
 			}
@@ -131,6 +135,13 @@ function manageTime() {
 		localStorage.setItem(
 			'timerTime',
 			JSON.stringify([timerTime.getHours(), timerTime.getMinutes(), timerTime.getSeconds(), timerTime.getMilliseconds()])
+		);
+	}
+	if (location.href.slice(-10) != 'watch.html' && stopWatchTime && (!stopWatch_pause || stopWatch_pause == 'false')) {
+		stopWatchTime.addMilliseconds(10);
+		sessionStorage.setItem(
+			'stopWatchTime',
+			JSON.stringify([stopWatchTime.getHours(), stopWatchTime.getMinutes(), stopWatchTime.getSeconds(), stopWatchTime.getMilliseconds()])
 		);
 	}
 	checkAlarm(); //检查闹钟响应
