@@ -235,10 +235,6 @@ window.onload = function () {
 	if (clockFunction) {
 		clockFunction.addEventListener('click', (event) => {
 			const selectedFunction = event.target.value;
-			// const timeInputHour = document.getElementById('time-input-hour');
-			// const timeInputMinute = document.getElementById('time-input-minute');
-			// const timeInputSecond = document.getElementById('time-input-second');
-			// const timeInputButton = document.getElementById('time-input-button');
 			const overlay = document.getElementById('overlay');
 			const popup = document.getElementById('popup');
 			if (selectedFunction === 'setTime') {
@@ -257,11 +253,9 @@ window.onload = function () {
 				popup.style.display = 'none';
 			}
 		});
-		// const selectedFunction = event.target.value;
 		const timeInputHour = document.getElementById('time-input-hour');
 		const timeInputMinute = document.getElementById('time-input-minute');
 		const timeInputSecond = document.getElementById('time-input-second');
-		// const timeInputButton = document.getElementById('time-input-button');
 
 		timeInputHour.addEventListener('input', function (e) {
 			console.log('inputhour');
