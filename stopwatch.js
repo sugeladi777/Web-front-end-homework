@@ -69,7 +69,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	const reset = document.getElementById('reset-button');
 	reset.addEventListener('click', function handleReset() {
 		handlePause();
-		// sessionStorage.setItem('stopWatchTime', JSON.stringify([0, 0, 0, 0]));
 		sessionStorage.removeItem('stopWatchTime');
 		const minuteHand = document.getElementById('minute-hand');
 		const secondHand = document.getElementById('second-hand');

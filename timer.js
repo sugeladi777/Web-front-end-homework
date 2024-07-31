@@ -221,8 +221,6 @@ function updateClock(time) {
 	document.getElementById('second').value = seconds;
 
 	// 获取dom树节点
-	// const hourHand = document.getElementById('hour-hand');
-	// const minuteHand = document.getElementById('minute-hand');
 	const secondHand = document.getElementById('second-hand');
 	const curTime = hours * 3600 + minutes * 60 + seconds + milliseconds / 1000;
 
@@ -231,7 +229,5 @@ function updateClock(time) {
 	secondDeg = 360 * (curTime / sumTime);
 
 	//更新时针指针角度
-	// hourHand.setAttribute('transform', `rotate(${hourDeg}, 250, 250)`);
-	// minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 250, 250)`);
 	secondHand.setAttribute('transform', `rotate(${secondDeg}, 250, 250)`);
 }
